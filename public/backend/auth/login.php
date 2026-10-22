@@ -3,7 +3,7 @@
 session_start();
 require_once __DIR__ . '/../config/database.php';
 
-$loginPage = '/../login_page.php';
+$loginPage = '/../login.php';
 
 // Simpan error ke sessor, kembali ke login page
 function backWithError(string $msg, string $page): void {
