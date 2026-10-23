@@ -35,11 +35,11 @@
       
 
       <form action="../backend/auth/register.php" method="POST" class="flex flex-col gap-3">
-        <input type="hidden" name="role" value ="user" class="roleInput">
+        <input type="hidden" name="role" value ="mahasiswa" class="roleInput">
         <div class="role relative bg-white flex justify-between items-center p-2 w-[250px] left-[70px] rounded-4xl shadow-xl ">
           <div class="slider absolute bg-yellow-500 w-[50%] h-[100%] left-[0px] rounded-4xl transition-all duration-400 ease-in-out"></div>
-          <button class="mahasiswa text-[16px] text-black font-[700] left-[10px] relative " name = "Mahasiswa">Mahasiswa</button>
-          <button class="driver relative right-[30px] text-black font-[700] text-[16px]" name = "Driver">Driver</button>
+          <button type = "button" class="mahasiswa text-[16px] text-black font-[700] left-[10px] relative " name = "Mahasiswa">Mahasiswa</button>
+          <button type = "button" class="driver relative right-[30px] text-black font-[700] text-[16px]" name = "Driver">Driver</button>
         </div>
 
           <div>
@@ -52,7 +52,7 @@
             <input type="password" name="password" placeholder="Password" required class="w-full px-5 py-3 rounded-2xl bg-white border border-transparent focus:border-gray-300 text-gray-700 placeholder-gray-400 text-sm outline-none shadow-sm transition">
           </div>
 
-          <button type="submit" class="w-full py-3.5 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-2xl shadow-lg transition duration-200 mt-2">
+          <button type="submit" name = "submit" class="w-full py-3.5 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-2xl shadow-lg transition duration-200 mt-2">
             Sign Up
           </button>
       </form>

@@ -1,6 +1,7 @@
 <?php
-
-require_once 'database.php'; 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once '../config/database.php'; 
 
 if (isset($_POST['submit'])) {
    
@@ -19,19 +20,19 @@ if (isset($_POST['submit'])) {
 
     try {
         
-        $sql = "INSERT INTO users (username, email, password,role) VALUES (:username, :email, :password , :role)";
+        $sql = "INSERT INTO users (nama, email, password,role) VALUES (:nama, :email, :password , :role)";
         $stmt = $pdo->prepare($sql);
 
        
         $stmt->execute([
-            ':username' => $username,
+            ':nama' => $username,
             ':email'    => $email,
             ':password' => $hashed_password,
             ':role'     => $role
         ]);
 
         
-        echo "<script>alert('Registrasi berhasil! Silakan login.'); window.location.href='login.php';</script>";
+        echo "<script>alert('Registrasi berhasil! Silakan login.'); window.location.href='../../frontend/login.php';</script>";
 
     } catch (PDOException $e) {
       
@@ -43,7 +44,7 @@ if (isset($_POST['submit'])) {
     }
 } else {
     
-    header("Location: login.php");
+    header("Location: ../../frontend/login.php");
     exit;
 }
 ?>

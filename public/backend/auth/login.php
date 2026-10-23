@@ -3,16 +3,14 @@
 session_start();
 require_once __DIR__ . '/../config/database.php';
 
-$loginPage = '/../login.php';
+$loginPage = '../../frontend/login.php';
 
-// Simpan error ke sessor, kembali ke login page
 function backWithError(string $msg, string $page): void {
     $_SESSION['flash_error'] = $msg;
     header("Location: $page");
     exit;
 }
 
-// Hanya menerima request post
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: $loginPage");
     exit;
@@ -40,5 +38,5 @@ $_SESSION['user_id'] = $user['id'];
 $_SESSION['nama']    = $user['nama'];
 $_SESSION['role']    = $user['role'];
 
-header('Location: ../../public/frontend/index.php');
+header('Location: ../../frontend/index.php');
 exit;

@@ -13,12 +13,12 @@ mahasiswa.on("click", sliderMahasiswa);
 function sliderMahasiswa(){
     slider.removeClass("translate-x-full");
     slider.addClass("translate-x-0");
-    role.val("mahasiswa").toLowerCase();
+    role.val("mahasiswa");
 }
 function sliderDriver(){
     slider.removeClass("translate-x-0");
     slider.addClass("translate-x-full");
-    role.val("driver").toLowerCase();
+    role.val("driver");
     
 }
 
