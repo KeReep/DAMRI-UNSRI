@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAMRI UNSRI - Pemesanan Tiket Bus Mahasiswa Universitas Sriwijaya</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Font: Inter -->
+   <?php include 'head.php';?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,9 +15,9 @@
                     },
                     colors: {
                         damri: {
-                            navy: '#1E3A8A',      /* Dark navy blue for text & footer */
-                            blue: '#024CAA',      /* Primary brand blue */
-                            amber: '#F59E0B',     /* Yellow / Orange brand color */
+                            navy: '#1E3A8A',      
+                            blue: '#024CAA',      
+                            amber: '#F59E0B',     
                             yellowHover: '#D97706',
                             cardBg: '#F8FAFC',
                             footerBg: '#1D2A44'
@@ -41,26 +31,22 @@
         html {
             scroll-behavior: smooth;
         }
+
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navbar -->
+
     <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo Top Left -->
             <a href="#" class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-amber-500 flex items-center justify-center text-white shadow-sm">
-                    <i class="fa-solid fa-bus text-lg"></i>
-                </div>
-                <div class="flex items-center">
-                    <span class="text-2xl font-black tracking-tight text-damri-navy">DAMRI</span>
-                    <span class="text-2xl font-black tracking-tight text-amber-500">UNSRI</span>
+                <div class="flex items-center gap-2">
+                    <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
+                    <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>
                 </div>
             </a>
 
-            <!-- Navigation Links Center -->
+    
             <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
                 <a href="#beranda" class="text-damri-navy border-b-2 border-amber-500 pb-1 font-bold">Beranda</a>
                 <a href="#pesan" class="text-slate-600 hover:text-damri-navy transition-colors">Pesan Tiket</a>
@@ -70,24 +56,24 @@
                 <a href="#kontak" class="text-slate-600 hover:text-damri-navy transition-colors">Kontak</a>
             </nav>
 
-            <!-- Top Right Action Buttons -->
-            <div class="hidden md:flex items-center space-x-3">
-                <button id="openLoginBtn" class="px-5 py-2 text-sm font-semibold text-damri-navy border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
-                    Masuk
-                </button>
-                <button id="openRegisterBtn" class="px-5 py-2 text-sm font-semibold text-white bg-amber-500 hover:bg-amber-600 rounded-xl shadow-sm transition-all">
-                    Daftar
-                </button>
-            </div>
+          
+            
+                <details class= "flex mr-[40px]">
+                    <summary><i class="fa-solid fa-circle-user"></i></summary>
+                    <h1 class="">Muhammad Rasyid Ridho</h1>
+                    <h1 class="">Logout</h1>
+                    <h1 class="">Create new account</h1>
+                </details>
+            
 
             <!-- Mobile Menu Toggle -->
             <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
-                <i class="fa-solid fa-bars text-xl"></i>
+                <i class=" humberger fa-solid fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Drawer -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-3">
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-3 trasition-all duration-400 transform-all">
             <a href="#beranda" class="block py-1.5 text-damri-navy font-bold">Beranda</a>
             <a href="#pesan" class="block py-1.5 text-slate-600 font-medium">Pesan Tiket</a>
             <a href="#jadwal" class="block py-1.5 text-slate-600 font-medium">Jadwal</a>
@@ -96,7 +82,7 @@
             <a href="#kontak" class="block py-1.5 text-slate-600 font-medium">Kontak</a>
             <div class="pt-3 border-t border-slate-100 flex gap-3">
                 <button id="openLoginMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-damri-navy border border-slate-300 rounded-xl">Masuk</button>
-                <button id="openRegisterMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-white bg-amber-500 rounded-xl">Daftar</button>
+                <button id="openRegisterMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-white bg-amber-00 rounded-xl">Daftar</button>
             </div>
         </div>
     </header>
@@ -340,7 +326,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="kontak" class="bg-damri-footerBg text-slate-300 pt-12 pb-6 border-t border-slate-800">
+    <footer id="kontak" class="bg-red-600 text-slate-300 pt-12 pb-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-700/50">
@@ -398,147 +384,45 @@
             </div>
 
             <div class="pt-6 text-center text-[11px] text-slate-400">
-                <p>&copy; 2026 DAMRI UNSRI. Semua Hak Dilindungi[cite: 8].</p>
+                <p>&copy; 2026 DAMRI UNSRI. Kelompok 4 L3 2026.</p>
             </div>
 
         </div>
     </footer>
-
-    <!-- Modals & Toasts -->
-    <div id="loginModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl relative">
-            <button id="closeLoginBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <h3 class="text-lg font-bold text-slate-800 text-center mb-4">Masuk ke Akun</h3>
-            <form id="loginForm" class="space-y-3 text-xs">
-                <div>
-                    <label class="font-semibold text-slate-600 block mb-1">Email / NIM</label>
-                    <input type="text" required placeholder="NIM@student.unsri.ac.id" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-                <div>
-                    <label class="font-semibold text-slate-600 block mb-1">Kata Sandi</label>
-                    <input type="password" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-                <button type="submit" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow mt-2">Masuk</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="registerModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl relative">
-            <button id="closeRegisterBtn" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <h3 class="text-lg font-bold text-slate-800 text-center mb-4">Daftar Akun Baru</h3>
-            <form id="registerForm" class="space-y-3 text-xs">
-                <div>
-                    <label class="font-semibold text-slate-600 block mb-1">Nama Lengkap</label>
-                    <input type="text" required placeholder="Nama Mahasiswa" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-                <div>
-                    <label class="font-semibold text-slate-600 block mb-1">NIM Mahasiswa</label>
-                    <input type="text" required placeholder="09021282..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-                <div>
-                    <label class="font-semibold text-slate-600 block mb-1">Kata Sandi</label>
-                    <input type="password" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-                <button type="submit" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow mt-2">Daftar</button>
-            </form>
-        </div>
-    </div>
 
     <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2.5 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none text-xs">
         <i class="fa-solid fa-circle-check text-emerald-400"></i>
         <span id="toastMsg">Notifikasi</span>
     </div>
 
-    <!-- Scripts dengan Event Listener -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            function toggleModal(modalId) {
-                const modal = document.getElementById(modalId);
-                if (modal) modal.classList.toggle('hidden');
-            }
 
-            function showToast(msg) {
-                const toast = document.getElementById('toast');
-                const toastMsg = document.getElementById('toastMsg');
-                if (toast && toastMsg) {
-                    toastMsg.innerText = msg;
-                    toast.classList.remove('translate-y-16', 'opacity-0');
-                    setTimeout(() => {
-                        toast.classList.add('translate-y-16', 'opacity-0');
-                    }, 3000);
-                }
-            }
+    const humberger = $(".humberger");
+    const mobileNav = $("#mobileMenu");
 
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            }
 
-            const openLoginBtn = document.getElementById('openLoginBtn');
-            const openLoginMobileBtn = document.getElementById('openLoginMobileBtn');
-            const closeLoginBtn = document.getElementById('closeLoginBtn');
-            const loginForm = document.getElementById('loginForm');
-
-            if (openLoginBtn) openLoginBtn.addEventListener('click', () => toggleModal('loginModal'));
-            if (openLoginMobileBtn) openLoginMobileBtn.addEventListener('click', () => toggleModal('loginModal'));
-            if (closeLoginBtn) closeLoginBtn.addEventListener('click', () => toggleModal('loginModal'));
-            if (loginForm) {
-                loginForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    toggleModal('loginModal');
-                    showToast('Masuk Berhasil!');
-                });
-            }
-
-            const openRegisterBtn = document.getElementById('openRegisterBtn');
-            const openRegisterMobileBtn = document.getElementById('openRegisterMobileBtn');
-            const closeRegisterBtn = document.getElementById('closeRegisterBtn');
-            const registerForm = document.getElementById('registerForm');
-
-            if (openRegisterBtn) openRegisterBtn.addEventListener('click', () => toggleModal('registerModal'));
-            if (openRegisterMobileBtn) openRegisterMobileBtn.addEventListener('click', () => toggleModal('registerModal'));
-            if (closeRegisterBtn) closeRegisterBtn.addEventListener('click', () => toggleModal('registerModal'));
-            if (registerForm) {
-                registerForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    toggleModal('registerModal');
-                    showToast('Pendaftaran Berhasil!');
-                });
-            }
-
-            const ticketSearchForm = document.getElementById('ticketSearchForm');
-            if (ticketSearchForm) {
-                ticketSearchForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const origin = document.getElementById('originInput').value;
-                    const dest = document.getElementById('destinationInput').value;
-                    const resultsSection = document.getElementById('resultsSection');
-                    const searchResultTitle = document.getElementById('searchResultTitle');
-                    
-                    if (searchResultTitle) {
-                        searchResultTitle.innerText = `Jadwal Bus: ${origin} → ${dest}`;
-                    }
-                    if (resultsSection) {
-                        resultsSection.classList.remove('hidden');
-                        resultsSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                    showToast('Menampilkan tiket tersedia');
-                });
-            }
-
-            const selectTicketBtns = document.querySelectorAll('.selectTicketBtn');
-            selectTicketBtns.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    showToast('Tiket dipilih! Silakan selesaikan pembayaran.');
-                });
-            });
-        });
+    function closeMenu(){
+        mobileNav.addClass("hidden")
+        mobileNav.addClass("md:hidden");
+        mobileNav.slideToggle(300);
+    }
+    function openMenu(){
+    mobileNav.removeClass("hidden");
+    mobileNav.removeClass("md:hidden");
+    }
+    
+    let klik = false
+    
+    humberger.on("click", () =>{
+        if(klik == false){
+            openMenu();
+            klik = true;
+        }else{
+            closeMenu();
+            klik = false;
+        }
+    })
     </script>
 </body>
 </html>
