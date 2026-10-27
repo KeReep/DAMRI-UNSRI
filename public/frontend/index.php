@@ -36,8 +36,60 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navbar -->
-    <?php include 'navbar.php'; ?>
+
+    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5">
+                <div class="flex items-center gap-2">
+                    <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
+                    <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>
+                </div>
+            </a>
+
+    
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                <a href="#beranda" class="text-damri pb-1 " tabindex = "0">Beranda</a>
+                <a href="#pesan" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Pesan Tiket</a>
+                <a href="#jadwal" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Jadwal</a>
+                <a href="#rute" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Rute</a>
+                <a href="#informasi" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Informasi</a>
+                <a href="#kontak" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Kontak</a>
+            </nav>
+
+            <div class="group relative inline-block -mr-[70px] bg-transparent">
+                <div class="cursor-pointer text-xl flex gap-3 justify-center items-center bg-blue-600">
+                    <i class="fa-solid fa-circle-user text-[29px]"></i>
+                    <h1 class="hover:text-blue-500 cursor-pointer text-[15px]">Muhammad Rasyid Ridho</h1>
+                    <i class="fa-sharp fa-regular fa-greater-than text-[10px]"></i>
+                </div>
+                <div class="hidden group-hover:block absolute top-full left-0 bg-white shadow-md p-4 rounded z-10 min-w-[150px]">
+                    <h1 class="hover:text-blue-500 cursor-pointer">Logout</h1>
+                    <h1 class="hover:text-blue-500 cursor-pointer">Create new account</h1>
+                </div>
+            </div>
+                
+            
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+                <i class=" humberger fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-3 trasition-all duration-400 transform-all">
+            <a href="#beranda" class="block py-1.5 text-damri-navy font-bold">Beranda</a>
+            <a href="#pesan" class="block py-1.5 text-slate-600 font-medium">Pesan Tiket</a>
+            <a href="#jadwal" class="block py-1.5 text-slate-600 font-medium">Jadwal</a>
+            <a href="#rute" class="block py-1.5 text-slate-600 font-medium">Rute</a>
+            <a href="#informasi" class="block py-1.5 text-slate-600 font-medium">Informasi</a>
+            <a href="#kontak" class="block py-1.5 text-slate-600 font-medium">Kontak</a>
+            <div class="pt-3 border-t border-slate-100 flex gap-3">
+                <button id="openLoginMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-damri-navy border border-slate-300 rounded-xl">Masuk</button>
+                <button id="openRegisterMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-white bg-amber-00 rounded-xl">Daftar</button>
+            </div>
+        </div>
+    </header>
 
     <!-- Main Content -->
     <main id="beranda" class="flex-grow">
@@ -278,17 +330,15 @@
     </main>
 
     <!-- Footer -->
-    <footer id="kontak" class="bg-red-600 text-slate-300 pt-12 pb-6 border-t border-slate-800">
+    <footer id="kontak" class="text-slate-300 pt-12 pb-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-700/50">
                 
                 <div class="lg:col-span-5 space-y-3">
                     <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-lg bg-amber-500 flex items-center justify-center text-white text-xs">
-                            <i class="fa-solid fa-bus"></i>
-                        </div>
-                        <span class="text-xl font-black text-white">DAMRI<span class="text-amber-500">UNSRI</span></span>
+                        <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
+                        <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>     
                     </div>
                     <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
                         Layanan resmi DAMRI untuk mahasiswa Universitas Sriwijaya. Nikmati perjalanan nyaman dengan harga terjangkau.
@@ -336,11 +386,7 @@
             </div>
 
             <div class="pt-6 text-center text-[11px] text-slate-400">
-<<<<<<< HEAD
                 <p>&copy; 2026 DAMRI UNSRI. Kelompok 4 L3 2026.</p>
-=======
-                <p>&copy; 2026 DAMRI UNSRI. Semua Hak Dilindungi.</p>
->>>>>>> 4cfbcc539f0a903b30e51af1252982987a1dc68a
             </div>
 
         </div>

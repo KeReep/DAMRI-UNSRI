@@ -1,2 +1,4 @@
 @import "tailwindcss";
 
+/* Pindai seluruh folder, sub-folder, dan semua ekstensi file di proyek ini */
+@source "./**/*";
