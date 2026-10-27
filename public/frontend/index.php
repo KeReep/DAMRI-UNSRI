@@ -36,56 +36,8 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
-
-    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5">
-                <div class="flex items-center gap-2">
-                    <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
-                    <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>
-                </div>
-            </a>
-
-    
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
-                <a href="#beranda" class="text-damri-navy border-b-2 border-amber-500 pb-1 font-bold">Beranda</a>
-                <a href="#pesan" class="text-slate-600 hover:text-damri-navy transition-colors">Pesan Tiket</a>
-                <a href="#jadwal" class="text-slate-600 hover:text-damri-navy transition-colors">Jadwal</a>
-                <a href="#rute" class="text-slate-600 hover:text-damri-navy transition-colors">Rute</a>
-                <a href="#informasi" class="text-slate-600 hover:text-damri-navy transition-colors">Informasi</a>
-                <a href="#kontak" class="text-slate-600 hover:text-damri-navy transition-colors">Kontak</a>
-            </nav>
-
-          
-            
-                <details class= "flex mr-[40px]">
-                    <summary><i class="fa-solid fa-circle-user"></i></summary>
-                    <h1 class="">Muhammad Rasyid Ridho</h1>
-                    <h1 class="">Logout</h1>
-                    <h1 class="">Create new account</h1>
-                </details>
-            
-
-            <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
-                <i class=" humberger fa-solid fa-bars text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-3 trasition-all duration-400 transform-all">
-            <a href="#beranda" class="block py-1.5 text-damri-navy font-bold">Beranda</a>
-            <a href="#pesan" class="block py-1.5 text-slate-600 font-medium">Pesan Tiket</a>
-            <a href="#jadwal" class="block py-1.5 text-slate-600 font-medium">Jadwal</a>
-            <a href="#rute" class="block py-1.5 text-slate-600 font-medium">Rute</a>
-            <a href="#informasi" class="block py-1.5 text-slate-600 font-medium">Informasi</a>
-            <a href="#kontak" class="block py-1.5 text-slate-600 font-medium">Kontak</a>
-            <div class="pt-3 border-t border-slate-100 flex gap-3">
-                <button id="openLoginMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-damri-navy border border-slate-300 rounded-xl">Masuk</button>
-                <button id="openRegisterMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-white bg-amber-00 rounded-xl">Daftar</button>
-            </div>
-        </div>
-    </header>
+    <!-- Header / Navbar -->
+    <?php include 'navbar.php'; ?>
 
     <!-- Main Content -->
     <main id="beranda" class="flex-grow">
@@ -124,7 +76,7 @@
                         </div>
 
                         <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg">
-                            Layanan pemesanan tiket bus DAMRI khusus untuk mahasiswa Universitas Sriwijaya. Pesan tiket mudah, cepat, dan aman[cite: 8].
+                            Layanan pemesanan tiket bus DAMRI khusus untuk mahasiswa Universitas Sriwijaya. Pesan tiket mudah, cepat, dan aman.
                         </p>
 
                         <!-- Feature Badges -->
@@ -284,7 +236,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-sm text-slate-800 mb-1">Pemesanan Online</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Pesan tiket kapan saja dan di mana saja[cite: 8].</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Pesan tiket kapan saja dan di mana saja.</p>
                         </div>
                     </div>
 
@@ -294,7 +246,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-sm text-slate-800 mb-1">Jadwal Terpercaya</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Jadwal keberangkatan tepat waktu[cite: 8].</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Jadwal keberangkatan tepat waktu.</p>
                         </div>
                     </div>
 
@@ -304,7 +256,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-sm text-slate-800 mb-1">Pembayaran Aman</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Transaksi aman dengan berbagai metode pembayaran[cite: 8].</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Transaksi aman dengan berbagai metode pembayaran.</p>
                         </div>
                     </div>
 
@@ -314,7 +266,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-sm text-slate-800 mb-1">Bantuan 24/7</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Layanan pelanggan siap membantu Anda[cite: 8].</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Layanan pelanggan siap membantu Anda.</p>
                         </div>
                     </div>
 
@@ -339,7 +291,7 @@
                         <span class="text-xl font-black text-white">DAMRI<span class="text-amber-500">UNSRI</span></span>
                     </div>
                     <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
-                        Layanan resmi DAMRI untuk mahasiswa Universitas Sriwijaya. Nikmati perjalanan nyaman dengan harga terjangkau[cite: 8].
+                        Layanan resmi DAMRI untuk mahasiswa Universitas Sriwijaya. Nikmati perjalanan nyaman dengan harga terjangkau.
                     </p>
                 </div>
 
@@ -384,7 +336,11 @@
             </div>
 
             <div class="pt-6 text-center text-[11px] text-slate-400">
+<<<<<<< HEAD
                 <p>&copy; 2026 DAMRI UNSRI. Kelompok 4 L3 2026.</p>
+=======
+                <p>&copy; 2026 DAMRI UNSRI. Semua Hak Dilindungi.</p>
+>>>>>>> 4cfbcc539f0a903b30e51af1252982987a1dc68a
             </div>
 
         </div>
