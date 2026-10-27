@@ -35,85 +35,25 @@
     </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
-
-
-    <header class="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5">
-                <div class="flex items-center gap-2">
-                    <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
-                    <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>
-                </div>
-            </a>
-
-    
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
-                <a href="#beranda" class="text-damri pb-1 " tabindex = "0">Beranda</a>
-                <a href="#pesan" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Pesan Tiket</a>
-                <a href="#jadwal" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Jadwal</a>
-                <a href="#rute" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Rute</a>
-                <a href="#informasi" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Informasi</a>
-                <a href="#kontak" class="text-slate-600 hover:text-damri-navy transition-colors" tabindex = "0">Kontak</a>
-            </nav>
-
-            <div class="group relative inline-block -mr-[70px] bg-transparent">
-                <div class="cursor-pointer text-xl flex gap-3 justify-center items-center bg-blue-600">
-                    <i class="fa-solid fa-circle-user text-[29px]"></i>
-                    <h1 class="hover:text-blue-500 cursor-pointer text-[15px]">Muhammad Rasyid Ridho</h1>
-                    <i class="fa-sharp fa-regular fa-greater-than text-[10px]"></i>
-                </div>
-                <div class="hidden group-hover:block absolute top-full left-0 bg-white shadow-md p-4 rounded z-10 min-w-[150px]">
-                    <h1 class="hover:text-blue-500 cursor-pointer">Logout</h1>
-                    <h1 class="hover:text-blue-500 cursor-pointer">Create new account</h1>
-                </div>
-            </div>
-                
-            
-
-            <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
-                <i class=" humberger fa-solid fa-bars text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-5 space-y-3 trasition-all duration-400 transform-all">
-            <a href="#beranda" class="block py-1.5 text-damri-navy font-bold">Beranda</a>
-            <a href="#pesan" class="block py-1.5 text-slate-600 font-medium">Pesan Tiket</a>
-            <a href="#jadwal" class="block py-1.5 text-slate-600 font-medium">Jadwal</a>
-            <a href="#rute" class="block py-1.5 text-slate-600 font-medium">Rute</a>
-            <a href="#informasi" class="block py-1.5 text-slate-600 font-medium">Informasi</a>
-            <a href="#kontak" class="block py-1.5 text-slate-600 font-medium">Kontak</a>
-            <div class="pt-3 border-t border-slate-100 flex gap-3">
-                <button id="openLoginMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-damri-navy border border-slate-300 rounded-xl">Masuk</button>
-                <button id="openRegisterMobileBtn" class="w-1/2 py-2 text-sm font-semibold text-white bg-amber-00 rounded-xl">Daftar</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
+   <?php include 'navbar.php';?>
     <main id="beranda" class="flex-grow">
-        
-        <!-- HERO SECTION DENGAN EFEK GRADASI BLUR/FADE PADA FOTO -->
         <section class="relative bg-white pt-6 pb-20 overflow-hidden min-h-[480px] lg:min-h-[520px] flex items-center">
-            
-            <!-- Foto Full Background di Sebelah Kanan dengan Overlay Gradasi Putih -->
             <div class="absolute inset-0 z-0 flex justify-end pointer-events-none">
                 <div class="relative w-full lg:w-3/4 h-full">
-                    <!-- Foto Utama Bus & Rektorat UNSRI -->
+                  
                     <img src="../images/lnding-page.jpeg" 
                          alt="Bus DAMRI Universitas Sriwijaya" 
                          class="w-full h-full object-cover object-right"
                          />
-                    <!-- Overlay Gradasi Halus: Putih di Kiri menyatu ke Transparan di Kanan -->
+              
                     <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-40% to-transparent"></div>
                     
-                    <!-- Overlay Tambahan Kecerahan Putih dari Bawah untuk Transisi Form Tiket -->
+                  
                     <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
                 </div>
             </div>
 
-            <!-- Konten Teks Hero di Atas Layer Foto -->
+       
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
@@ -131,7 +71,7 @@
                             Layanan pemesanan tiket bus DAMRI khusus untuk mahasiswa Universitas Sriwijaya. Pesan tiket mudah, cepat, dan aman.
                         </p>
 
-                        <!-- Feature Badges -->
+                 
                         <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
                             <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/90 backdrop-blur-sm border border-slate-100 shadow-sm">
                                 <div class="w-9 h-9 rounded-full bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0">
@@ -159,14 +99,14 @@
             </div>
         </section>
 
-        <!-- FORMULIR PESAN TIKET BUS -->
+
         <section id="pesan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
             <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-7">
                 <h3 class="text-lg font-bold text-damri-navy mb-5">Pesan Tiket Bus</h3>
 
                 <form id="ticketSearchForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 gap-4 items-end">
                     
-                    <!-- Dari (Origin) -->
+                   
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Dari</label>
                         <div class="relative">
@@ -180,7 +120,7 @@
                         </div>
                     </div>
 
-                    <!-- Tujuan (Destination) -->
+           
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Tujuan</label>
                         <div class="relative">
@@ -194,7 +134,7 @@
                         </div>
                     </div>
 
-                    <!-- Tanggal Berangkat -->
+                 
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Jam Pemberangkat</label>
                         <div class="relative">
@@ -203,7 +143,7 @@
                         </div>
                     </div>
 
-                    <!-- Jumlah Penumpang -->
+           
                     <div class="lg:col-span-2 space-y-1.5">
                         <label class="text-xs font-semibold text-slate-500">Jumlah Penumpang</label>
                         <div class="relative">
@@ -217,7 +157,7 @@
                         </div>
                     </div>
 
-                    <!-- Cari Tiket Button -->
+           
                     <div class="lg:col-span-1">
                         <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-1.5">
                             <span>Cari Tiket</span>
@@ -228,7 +168,6 @@
             </div>
         </section>
 
-        <!-- Search Results Section -->
         <section id="resultsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
                 <div class="flex justify-between items-center mb-4">
@@ -276,7 +215,7 @@
             </div>
         </section>
 
-        <!-- Features Grid (4 Columns) -->
+     
         <section id="informasi" class="py-12 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
@@ -329,7 +268,7 @@
 
     </main>
 
-    <!-- Footer -->
+
     <footer id="kontak" class="text-slate-300 pt-12 pb-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
