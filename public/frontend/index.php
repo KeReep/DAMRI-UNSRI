@@ -127,8 +127,8 @@
                             <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                             <select id="destinationInput" class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer">
                                 <option value="Kampus Bukit">Pilih tujuan</option>
-                                <option value="Kampus Bukit">Kampus Bukit Jimbaran (Palembang)</option>
-                                <option value="Kampus Indralaya">Kampus Indralaya (Ogan Ilir)</option>
+                                <option value="Kampus Bukit">Kampus Bukit</option>
+                                <option value="Kampus Indralaya">Kampus Indralaya</option>
                             </select>
                             <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
                         </div>
