@@ -215,6 +215,50 @@
             </div>
         </section>
 
+        <section id="rute" class="py-10 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-damri-navy rounded-3xl shadow-lg overflow-hidden flex flex-col lg:flex-row relative">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white opacity-5 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-40 h-40 bg-amber-500 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center relative z-10">
+                        <span class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-3">Rute Utama</span>
+                        <h2 class="text-3xl lg:text-4xl font-black text-slate-800 leading-tight mb-4">
+                            Koneksi Cepat Antar Kampus UNSRI
+                        </h2>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-8">
+                            DAMRI UNSRI hadir untuk mempermudah mobilitas perkuliahanmu. Dengan armada yang nyaman dan jadwal keberangkatan yang teratur setiap harinya, pastikan kamu tidak pernah terlambat masuk kelas.
+                        </p>
+                        <a href="#pesan" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-sm shadow-md transition-all hover:scale-105 self-start">
+                            <span>Pesan Tiket Sekarang</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="p-8 lg:p-12 lg:w-1/2 bg-slate-900/40 flex flex-col justify-center gap-4 relative z-10 border-l border-slate-700/50">
+                        <div class="bg-white rounded-2xl p-5 shadow-md flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300 cursor-default">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-map-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Palembang &rarr; Indralaya</h4>
+                                <p class="text-xs text-slate-500 mt-1">Keberangkatan rutin dari Kampus Bukit Palembang</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-5 shadow-md flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300 cursor-default">
+                            <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-bus text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-base">Indralaya &rarr; Palembang</h4>
+                                <p class="text-xs text-slate-500 mt-1">Titik kumpul terminal dalam Kampus Indralaya</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
      
         <section id="informasi" class="py-12 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
