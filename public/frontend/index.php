@@ -168,139 +168,48 @@
             </div>
         </section>
 
-        <section id="resultsSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
-                <div class="flex justify-between items-center mb-4">
-                    <h4 class="text-base font-bold text-damri-navy" id="searchResultTitle">Jadwal Bus Tersedia</h4>
-                    <span class="text-xs text-slate-500">2 Perjalanan Ditemukan</span>
-                </div>
-                
-                <div class="space-y-3">
-                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-damri-navy text-white flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-sm font-bold text-slate-800">07:00 WIB &rarr; 08:15 WIB</h5>
-                                <p class="text-xs text-slate-500">DAMRI Executive • Rebo - Jum'at</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                            <span class="text-amber-600 font-extrabold text-base">Rp 10.000</span>
-                            <button class="selectTicketBtn px-4 py-2 bg-damri-navy text-white text-xs font-bold rounded-xl hover:bg-blue-900 transition-colors">
-                                Pilih
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-damri-navy text-white flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-bus"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-sm font-bold text-slate-800">11:30 WIB &rarr; 12:45 WIB</h5>
-                                <p class="text-xs text-slate-500">DAMRI Reguler AC</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                            <span class="text-amber-600 font-extrabold text-base">Rp 10.000</span>
-                            <button class="selectTicketBtn px-4 py-2 bg-damri-navy text-white text-xs font-bold rounded-xl hover:bg-blue-900 transition-colors">
-                                Pilih
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="rute" class="py-10 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-damri-navy rounded-3xl shadow-lg overflow-hidden flex flex-col lg:flex-row relative">
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white opacity-5 rounded-full blur-2xl pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-40 h-40 bg-amber-500 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
-                    
-                    <div class="p-8 lg:p-12 lg:w-1/2 flex flex-col justify-center relative z-10">
-                        <span class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-3">Rute Utama</span>
-                        <h2 class="text-3xl lg:text-4xl font-black text-slate-800 leading-tight mb-4">
-                            Koneksi Cepat Antar Kampus UNSRI
-                        </h2>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-8">
-                            DAMRI UNSRI hadir untuk mempermudah mobilitas perkuliahanmu. Dengan armada yang nyaman dan jadwal keberangkatan yang teratur setiap harinya, pastikan kamu tidak pernah terlambat masuk kelas.
-                        </p>
-                        <a href="#pesan" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-sm shadow-md transition-all hover:scale-105 self-start">
-                            <span>Pesan Tiket Sekarang</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="p-8 lg:p-12 lg:w-1/2 bg-slate-900/40 flex flex-col justify-center gap-4 relative z-10 border-l border-slate-700/50">
-                        <div class="bg-white rounded-2xl p-5 shadow-md flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300 cursor-default">
-                            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-map-location-dot text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-base">Palembang &rarr; Indralaya</h4>
-                                <p class="text-xs text-slate-500 mt-1">Keberangkatan rutin dari Kampus Bukit Palembang</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-2xl p-5 shadow-md flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300 cursor-default">
-                            <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-bus text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-base">Indralaya &rarr; Palembang</h4>
-                                <p class="text-xs text-slate-500 mt-1">Titik kumpul terminal dalam Kampus Indralaya</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-     
-        <section id="informasi" class="py-12 bg-white">
+        <!-- DIPERBAIKI: Padding atas-bawah diperluas (py-20) dan gap antar kartu ditingkatkan (gap-6) agar tidak mepet -->
+        <section id="informasi" class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <div class="p-5 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4">
-                        <div class="w-11 h-11 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
+                    <div class="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-ticket"></i>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-800 mb-1">Pemesanan Online</h4>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-sm text-slate-800">Pemesanan Online</h4>
                             <p class="text-xs text-slate-500 leading-relaxed">Pesan tiket kapan saja dan di mana saja.</p>
                         </div>
                     </div>
 
-                    <div class="p-5 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4">
-                        <div class="w-11 h-11 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
+                    <div class="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-clock"></i>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-800 mb-1">Jadwal Terpercaya</h4>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-sm text-slate-800">Jadwal Terpercaya</h4>
                             <p class="text-xs text-slate-500 leading-relaxed">Jadwal keberangkatan tepat waktu.</p>
                         </div>
                     </div>
 
-                    <div class="p-5 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4">
-                        <div class="w-11 h-11 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
+                    <div class="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-wallet"></i>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-800 mb-1">Pembayaran Aman</h4>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-sm text-slate-800">Pembayaran Aman</h4>
                             <p class="text-xs text-slate-500 leading-relaxed">Transaksi aman dengan berbagai metode pembayaran.</p>
                         </div>
                     </div>
 
-                    <div class="p-5 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4">
-                        <div class="w-11 h-11 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
+                    <div class="p-6 rounded-2xl bg-slate-50/70 border border-slate-100 flex items-start gap-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-headset"></i>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-slate-800 mb-1">Bantuan 24/7</h4>
+                        <div class="space-y-1">
+                            <h4 class="font-bold text-sm text-slate-800">Bantuan 24/7</h4>
                             <p class="text-xs text-slate-500 leading-relaxed">Layanan pelanggan siap membantu Anda.</p>
                         </div>
                     </div>
@@ -312,8 +221,197 @@
 
     </main>
 
+    <section id="rute" class="py-16 bg-slate-50/70 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-center mb-8 gap-4">
+                    <div class = "flex flex-col justify-center items-center">
+                        <h2 class="text-2xl font-bold text-damri-navy">Rute Damri Unsri</h2>
+                        <p class="text-xs text-slate-500 mt-1">Menghubungkan antara Kampus Bukit dan Kampus Indralaya</p>
+                    </div>
+                </div>
 
-    <footer id="kontak" class="text-slate-300 pt-12 pb-6 border-t border-slate-800">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-blue-50 text-damri-navy font-bold text-[11px] rounded-full">Rute tol Palindra</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <p class="text-xs text-slate-400">Penjemputan Kumpul Halte Bukit</p>
+                            </div>
+                            <div class="flex-grow flex items-center justify-center px-2">
+                                <div class="h-0.5 bg-slate-200 w-full relative">
+                                    <i class="fa-solid fa-bus text-damri-navy text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <a href="#pesan" class="font-bold text-damri-navy relative hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+
+              
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 bg-amber-50 text-amber-600 font-bold text-[11px] rounded-full">Rute tol Palindra</span>
+                            <span class="text-amber-500 font-extrabold text-sm">Rp 10.000</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
+                            </div>
+                            <div class="flex-grow flex items-center justify-center px-2">
+                                <div class="h-0.5 bg-slate-200 w-full relative">
+                                    <i class="fa-solid fa-bus text-amber-500 text-xs absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-1"></i>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <p class="text-xs text-slate-400">Halte Bukit</p>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                            <a href="#pesan" class="font-bold text-damri-navy hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="interior" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="px-3 py-1 bg-amber-100 text-amber-700 font-bold text-xs rounded-full inline-block">Fasilitas Bus</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-damri-navy">Kenyamanan Interior Bus DAMRI</h2>
+                    <p class="text-xs text-slate-500">Rasakan pengalaman perjalanan kampus yang bersih, aman, dan nyaman dengan berbagai fasilitas penunjang.</p>
+                </div>
+
+            
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    
+                    <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="h-52 overflow-hidden relative">
+                            <img src="../images/interior_damri.jpg" alt="Kursi & Suasana Cabin DAMRI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-pointer"/>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <span class="text-xs text-white font-medium flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> Perbesar Gambar</span>
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-1">
+                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-chair text-amber-500"></i> Kursi Ergonomis & AC SEJUK
+                            </h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                Tempat duduk empuk dengan leg-room luas untuk istirahat nyaman selama perjalanan.
+                            </p>
+                        </div>
+                    </div>
+
+                  
+                    <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                        <div class="h-52 overflow-hidden relative">
+                           
+                            <img src="../images/interior2.jpg" 
+                                 alt="Kapasitas & Kebersihan Bus" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                 
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <span class="text-xs text-white font-medium flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> Perbesar Gambar</span>
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-1">
+                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-broom text-amber-500"></i> Kabin Bersih & Steril
+                            </h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                Armada rutin dibersihkan sebelum jadwal keberangkatan demi kesehatan civitas akademika.
+                            </p>
+                        </div>
+                    </div>
+
+                
+                    <div class="group relative bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all sm:col-span-2 lg:col-span-1">
+                        <div class="h-52 overflow-hidden relative">
+                       
+                            <img src="../images/interior3.jpg" 
+                                 alt="Fasilitas Keselamatan Interior Bus" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                                 
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <span class="text-xs text-white font-medium flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> Perbesar Gambar</span>
+                            </div>
+                        </div>
+                        <div class="p-5 space-y-1">
+                            <h4 class="font-bold text-xs text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-shield-cat text-amber-500"></i> Standar Keamanan Tinggi
+                            </h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                Dilengkapi palu pemecah kaca darurat, APAR, dan sabuk pengaman di setiap kursi.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Tentang Layanan -->
+        <section id="tentang" class="py-20 bg-slate-50/60 border-t border-slate-100 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    
+                    <div class="lg:col-span-6">
+                        <div class="relative max-w-lg mx-auto lg:max-w-none">
+                            <div class="absolute -inset-2 bg-gradient-to-r from-damri-navy to-amber-500 rounded-3xl opacity-20 blur-xl"></div>
+                            <img src="../images/damri.jpg" 
+                                 alt="Armada Bus DAMRI Universitas Sriwijaya" 
+                            />
+                        </div>
+                    </div>
+
+            
+                    <div class="lg:col-span-6 space-y-4">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-700 font-bold text-xs rounded-full inline-block">Tentang Layanan</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-damri-navy leading-tight">
+                            Solusi Transportasi Resmi & Terintegrasi Mahasiswa UNSRI
+                        </h2>
+                        
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                            DAMRI UNSRI merupakan angkutan transportasi umum utama yang menghubungkan Kampus Palembang dan Kampus Indralaya secara terintergrasi. Layanan ini memfasilitasi mahasiswa, dosen, dan staf universitas agar dapat beraktivitas dengan aman, hemat, dan tepat waktu.
+                        </p>
+
+                        <div class="pt-3 space-y-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</div>
+                                <p class="text-xs text-slate-700 font-medium">Armada bus ber-AC dan terawat secara berkala untuk kenyamanan selama perjalanan.</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</div>
+                                <p class="text-xs text-slate-700 font-medium">Pilihan titik pemberhentian strategis di lingkungan internal maupun luar kampus.</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</div>
+                                <p class="text-xs text-slate-700 font-medium">Tarif subsidi khusus mahasiswa Universitas Sriwijaya.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer id="kontak" class="text-blue-600 pt-12 pb-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-700/50">
@@ -369,7 +467,7 @@
             </div>
 
             <div class="pt-6 text-center text-[11px] text-slate-400">
-                <p>&copy; 2026 DAMRI UNSRI. Kelompok 4 L3 2026.</p>
+                <p>&copy; 2026 DAMRI UNSRI. Kelompok 6 L3 2026.</p>
             </div>
 
         </div>
@@ -379,35 +477,5 @@
         <i class="fa-solid fa-circle-check text-emerald-400"></i>
         <span id="toastMsg">Notifikasi</span>
     </div>
-
-
-    <script>
-
-    const humberger = $(".humberger");
-    const mobileNav = $("#mobileMenu");
-
-
-    function closeMenu(){
-        mobileNav.addClass("hidden")
-        mobileNav.addClass("md:hidden");
-        mobileNav.slideToggle(300);
-    }
-    function openMenu(){
-    mobileNav.removeClass("hidden");
-    mobileNav.removeClass("md:hidden");
-    }
-    
-    let klik = false
-    
-    humberger.on("click", () =>{
-        if(klik == false){
-            openMenu();
-            klik = true;
-        }else{
-            closeMenu();
-            klik = false;
-        }
-    })
-    </script>
 </body>
 </html>

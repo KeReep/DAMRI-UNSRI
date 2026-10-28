@@ -34,14 +34,14 @@ $linkClass = 'nav-link relative text-slate-600 hover:text-amber-500 transition-c
         <div class="relative group hidden -mr-[50px] md:inline-block">
             <div class="cursor-pointer flex items-center gap-2.5 py-2 text-slate-700 hover:text-amber-500 transition-colors">
                 <i class="fa-solid fa-circle-user text-2xl text-slate-500 group-hover:text-amber-500"></i>
-                <span class="text-sm font-semibold">Muhammad Rasyid Ridho</span>
+                <span class="text-sm font-semibold">Kelompok 6</span>
                 <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
             </div>
             
             
             <div class="absolute right-0 top-full pt-2 w-48 hidden group-hover:block z-50">
                 <div class="bg-white shadow-lg border border-slate-100 rounded-xl p-2 space-y-1">
-                    <a href="#logout" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Logout</a>
+                    <a href="login.php" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Logout</a>
                     <a href="#register" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-amber-500 rounded-lg transition-colors">Create new account</a>
                 </div>
             </div>
