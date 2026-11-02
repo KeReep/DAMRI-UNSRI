@@ -6,27 +6,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        damri: {
-                            navy: '#1E3A8A',      
-                            blue: '#024CAA',      
-                            amber: '#F59E0B',     
-                            yellowHover: '#D97706',
-                            cardBg: '#F8FAFC',
-                            footerBg: '#1D2A44'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         html {
             scroll-behavior: smooth;
