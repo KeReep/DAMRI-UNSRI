@@ -52,7 +52,7 @@
 
             <!-- Box Koordinat GPS -->
             <div class="Koordinat w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 text-center">
-                <p class="text-xs text-slate-400 font-medium">Mendeteksi koordinat GPS perangkat Anda...</p>
+                <p class="testing text-xs text-slate-400 font-medium">Mendeteksi koordinat GPS perangkat Anda...</p>
             </div>
 
             <!-- Kotak Pilih Rute Interaktif -->

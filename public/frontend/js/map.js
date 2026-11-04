@@ -2,6 +2,7 @@ const slider = $(".wrapperSlider");
 const cardRoute = $(".card");
 const koordinat = $(".Koordinat");
 const btn = $(".back_to_location");
+const tes = $(".tes");
 
 const map = L.map($(".map")[0]).setView([0,0], 5);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -19,25 +20,39 @@ let latKampusBukit = -2.9852;
 let lngKampusBukit = 104.7321;
 let isFirstLoad = true;
 
+
+
+
+// 2. Gunakan watchPosition untuk melacak GPS secara live dan efisien
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.watchPosition(
         (Position) => {
-             latitude = Position.coords.latitude;
-             longitude = Position.coords.longitude;
-             const akurasi = Position.coords.accuracy;
+            latitude = Position.coords.latitude;
+            longitude = Position.coords.longitude;
+            const akurasi = Position.coords.accuracy;
 
-            if (marker) map.removeLayer(marker);
-            if (circle) map.removeLayer(circle);
+            // Update posisi marker jika sudah ada, atau buat baru jika belum
+            if (marker) {
+                marker.setLatLng([latitude, longitude]);
+            } else {
+                marker = L.marker([latitude, longitude]).addTo(map).bindPopup("Lokasi Anda Sekarang");
+            }
 
-           marker = L.marker([latitude, longitude]).addTo(map).bindPopup("Lokasi Anda Sekarang");
-           circle = L.circle([latitude, longitude], { radius: akurasi }).addTo(map);
+            // Update posisi & radius circle jika sudah ada, atau buat baru jika belum
+            if (circle) {
+                circle.setLatLng([latitude, longitude]);
+                circle.setRadius(akurasi);
+            } else {
+                circle = L.circle([latitude, longitude], { radius: akurasi }).addTo(map);
+            }
 
-           if (isFirstLoad) {
-               map.flyTo([latitude, longitude], 17, { duration: 1.5 });
-               isFirstLoad = false;
-           }
+            if (isFirstLoad) {
+                map.flyTo([latitude, longitude], 17, { duration: 1.5 });
+                isFirstLoad = false;
+            }
             
-           $(".Koordinat").html(`
+            // Render ulang koordinat
+            $(".Koordinat").html(`
                 <div class="flex items-center justify-center gap-6 text-xs font-semibold text-slate-700">
                     <span><i class="fa-solid fa-location-crosshairs text-amber-500 mr-1.5"></i> Lat: <strong class="font-mono">${latitude.toFixed(5)}</strong></span>
                     <span><i class="fa-solid fa-location-crosshairs text-amber-500 mr-1.5"></i> Lng: <strong class="font-mono">${longitude.toFixed(5)}</strong></span>
@@ -45,10 +60,13 @@ if (navigator.geolocation) {
             `);
         }, 
         (eror) => {
-            console.log(eror);
+            console.error(eror);
             $(".Koordinat").html(`<p class="text-xs text-rose-500 font-medium">Gagal mendeteksi lokasi GPS.</p>`);
-        }, {
-            enableHighAccuracy: true
+        }, 
+        {
+            enableHighAccuracy: true,
+            maximumAge: 1000, // Menggunakan cache data maksimal 1 detik
+            timeout: 5000     // Batas waktu timeout perolehan sinyal
         }
     );
 }
@@ -60,9 +78,6 @@ $(".back_to_location").on("click", () => {
         alert("GPS belum ditemukan atau izin lokasi ditolak.");
     }
 });
-
-const btnIndralaya = cardRoute[0];
-const btnBukit = cardRoute[1];
 
 function routes(latTujuan, lngTujuan, warna) {
     if (latitude != null && longitude != null) {
@@ -77,7 +92,7 @@ function routes(latTujuan, lngTujuan, warna) {
             show: false,
             routeWhileDragging: true,
             lineOptions: {
-              styles: [
+                styles: [
                     { color: warna, weight: 6, opacity: 0.8 }
                 ]
             }
@@ -88,13 +103,11 @@ function routes(latTujuan, lngTujuan, warna) {
 }
 
 $(cardRoute[0]).on("click", () => {
-    slider.removeClass("translate-x-full");
-    slider.addClass("translate-x-0");
+    slider.removeClass("translate-x-full").addClass("translate-x-0");
     routes(latKampusLayo, lngKampusLayo, "#1E3A8A");
 });
 
 $(cardRoute[1]).on("click", () => {
-    slider.removeClass("translate-x-0");
-    slider.addClass("translate-x-full");
+    slider.removeClass("translate-x-0").addClass("translate-x-full");
     routes(latKampusBukit, lngKampusBukit, "#1E3A8A");
 });

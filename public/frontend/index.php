@@ -139,7 +139,7 @@
            
                     <div class="lg:col-span-1">
                         <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow transition-colors flex items-center justify-center gap-1.5">
-                            <span>Cari Tiket</span>
+                            <a href = "cariTiket.php">Cari Tiket</a>
                         </button>
                     </div>
 
