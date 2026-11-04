@@ -215,49 +215,14 @@
 
     </div>
 
-    <!-- Toast Notification -->
+   
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none text-xs">
         <i id="toastIcon" class="fa-solid fa-circle-check text-amber-400 text-base"></i>
         <span id="toastMsg" class="font-medium">Notifikasi</span>
     </div>
 
 
-<script>
+<script src = "js/cariTiket.js"></script>
        
-$(document).ready(function() {
-    
-    $('#btn-swap').on('click', function() {
-    
-        const originVal = $('#origin-select').val();
-        const destVal = $('#destination-select').val();
-        
-
-        $('#origin-select').val(destVal);
-        $('#destination-select').val(originVal);
-    });
-
-
-    $('#search-form').on('submit', function(event) {
-
-        event.preventDefault(); 
-
-       
-        const asalTerpilih = $('#origin-select').val();
-        const tujuanTerpilih = $('#destination-select').val();
-        
-     
-        const teksAsal = $('#origin-select').find('option:selected').text();
-        const teksTujuan = $('#destination-select').find('option:selected').text();
-
-        console.log("Asal (Value): " + asalTerpilih + " | Teks: " + teksAsal);
-        console.log("Tujuan (Value): " + tujuanTerpilih + " | Teks: " + teksTujuan);
-        
-        alert(`Mencari tiket dari ${teksAsal} menuju ${teksTujuan}`);
-    });
-
-});
-
-
-</script>
 </body>
 </html>
