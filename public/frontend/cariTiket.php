@@ -1,439 +1,303 @@
 <?php
-// public/frontend/cariTiket.php
 session_start();
+require_once __DIR__ . '/route.php';   
+$haltePendek = $haltes;
+$halteList   = array_keys($haltes);
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pencarian Tiket - DAMRI UNSRI</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Cari Tiket - DAMRI UNSRI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'] },
+                    colors: { navy: { DEFAULT: '#1E3A8A', dark: '#172554' } }
+                }
+            }
+        };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; }
+        :focus-visible { outline: 2px solid #F59E0B; outline-offset: 2px; }
+        .bus-card { border-bottom: 1px solid #e2e8f0; }
+        .bus-card.is-last { border-bottom-color: transparent; }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+        @media print {
+            body * { visibility: hidden; }
+            #ticketDetailModal, #ticketDetailModal * { visibility: visible; }
+            #ticketDetailModal { position: absolute; inset: 0; background: #fff; align-items: flex-start; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
-<body class="bg-[#F0F4F8] min-h-screen text-slate-700 pb-12">
-
-    <!-- Container Utama -->
-    <div class="max-w-4xl mx-auto px-4 pt-6">
-
-        <!-- 1. Tombol Back -->
-        <div class="mb-6">
-            <a href="index.php" class="inline-flex items-center gap-2 bg-[#E2E8F0] hover:bg-slate-300 text-slate-700 px-5 py-2.5 rounded-full font-medium text-sm transition-all shadow-sm">
-                <i class="fa-solid fa-arrow-left text-xs"></i>
-                <span>Back</span>
+<body class="bg-[#F0F4F8] min-h-screen font-sans text-slate-700 antialiased">
+ 
+    <!-- Header -->
+    <header class="bg-navy">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-5 pb-16 sm:pb-20">
+            <a href="index.php" class="inline-flex items-center gap-2 text-sm text-blue-100 hover:text-white">
+                <i class="fa-solid fa-arrow-left text-xs"></i> Kembali ke beranda
             </a>
+            <h1 class="mt-5 text-2xl sm:text-3xl font-semibold text-white">Cari tiket bus kampus</h1>
+            <p class="mt-1 text-sm sm:text-base text-blue-100">DAMRI Unsri antara Bukit dan Indralaya.</p>
         </div>
-
-        <!-- 2. Form Pencarian Format Vertikal -->
-        <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 mb-8">
-            <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-bus text-[#1E3A8A]"></i> Cari Jadwal Bus DAMRI
-            </h2>
-
-            <form id="searchForm" action="cariTiket.php" method="GET" class="space-y-4">
-                
-                <!-- Input: Dari Kampus / Halte -->
-                <div class="bg-[#F8FAFC] rounded-2xl p-3.5 px-5 border border-slate-100">
-                    <label class="text-[10px] font-bold tracking-wider text-slate-400 uppercase flex items-center gap-1.5 mb-1">
-                        <i class="fa-solid fa-location-dot text-amber-500"></i> Dari Kampus / Halte
-                    </label>
-                    <select id="asalSelect" name="asal" class="bg-transparent text-slate-800 font-semibold text-sm focus:outline-none w-full cursor-pointer">
-                        <option value="Halte Unsri Bukit">Halte Unsri Bukit</option>
-                        <option value="Terminal Unsri Indralaya">Terminal Unsri Indralaya</option>
-                    </select>
-                </div>
-
-                <!-- Input: Tujuan -->
-                <div class="bg-[#F8FAFC] rounded-2xl p-3.5 px-5 border border-slate-100">
-                    <label class="text-[10px] font-bold tracking-wider text-slate-400 uppercase flex items-center gap-1.5 mb-1">
-                        <i class="fa-solid fa-compass text-blue-500"></i> Tujuan
-                    </label>
-                    <select id="tujuanSelect" name="tujuan" class="bg-transparent text-slate-800 font-semibold text-sm focus:outline-none w-full cursor-pointer">
-                        <option value="Terminal Unsri Indralaya">Terminal Unsri Indralaya</option>
-                        <option value="Halte Unsri Bukit">Halte Unsri Bukit</option>
-                    </select>
-                </div>
-
-                <!-- Input: Jam Keberangkatan -->
-                <div class="bg-[#F8FAFC] rounded-2xl p-3.5 px-5 border border-slate-100">
-                    <label class="text-[10px] font-bold tracking-wider text-slate-400 uppercase flex items-center gap-1.5 mb-1">
-                        <i class="fa-regular fa-clock text-emerald-500"></i> Jam Keberangkatan
-                    </label>
-                    <input type="time" id="jamInput" name="jam" class="bg-transparent text-slate-800 font-semibold text-sm focus:outline-none w-full cursor-pointer" value="07:00">
-                </div>
-
-                <!-- Tombol Cari Tiket -->
-                <button type="submit" class="w-full bg-[#1E3A8A] hover:bg-blue-900 text-white font-semibold py-4 rounded-2xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 mt-2">
-                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
-                    <span>Cari Tiket Sekarang</span>
-                </button>
-
-            </form>
-        </div>
-
-        <!-- 3. Sub-header & Jumlah Bus -->
-        <div class="flex items-center justify-between mb-5 px-2">
-            <h2 class="text-sm font-semibold text-slate-600">Berikut Jadwal yang tersedia pada saat ini</h2>
-            <span class="text-xs font-semibold text-slate-400 bg-slate-200/60 px-3 py-1 rounded-full" id="busCountText">10 Bus Tersedia</span>
-        </div>
-
-        <!-- 4. Daftar Kartu Bus -->
-        <div class="space-y-4" id="busListContainer">
-
-            <?php
-            // Data Dummy 10 Bus dengan kapasitas 40 Kursi
-            $buses = [
-                ["jam" => "06:00", "tiba" => "06:45", "sisa" => 0, "status" => "Dalam perjalanan", "icon_color" => "text-emerald-500"],
-                ["jam" => "07:00", "tiba" => "07:45", "sisa" => 8, "status" => "Dalam perjalanan", "icon_color" => "text-emerald-500"],
-                ["jam" => "08:00", "tiba" => "08:45", "sisa" => 15, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "09:00", "tiba" => "09:45", "sisa" => 28, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "10:00", "tiba" => "10:45", "sisa" => 40, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "11:00", "tiba" => "11:45", "sisa" => 40, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "13:00", "tiba" => "13:45", "sisa" => 32, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "14:00", "tiba" => "14:45", "sisa" => 10, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "15:00", "tiba" => "15:45", "sisa" => 40, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-                ["jam" => "16:30", "tiba" => "17:15", "sisa" => 40, "status" => "Menunggu keberangkatan", "icon_color" => "text-slate-400"],
-            ];
-
-            foreach ($buses as $bus) {
-                // Warna badge kursi
-                $kursiBg = $bus['sisa'] > 15 ? "bg-emerald-100 text-emerald-700" : ($bus['sisa'] > 0 ? "bg-amber-100 text-amber-700" : "bg-red-100 text-red-700");
-                $kursiTeks = $bus['sisa'] == 0 ? "Penuh" : "Sisa " . $bus['sisa'] . " Kursi";
-            ?>
-            <!-- Card Bus -->
-            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
-                
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <!-- Info Bus & Badge Logo -->
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-2xl bg-[#1E3A8A] text-amber-400 flex items-center justify-center text-2xl shadow-inner shrink-0">
-                            <i class="fa-solid fa-bus"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 mb-1">
-                                <h3 class="font-bold text-slate-800 text-lg">DAMRI</h3>
-                                <span class="<?= $kursiBg ?> text-[11px] font-semibold px-2.5 py-0.5 rounded-full"><?= $kursiTeks ?></span>
-                            </div>
-                            <p class="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-                                <i class="fa-solid fa-circle-check <?= $bus['icon_color'] ?>"></i> Status : <?= $bus['status'] ?>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Rute & Jam -->
-                    <div class="flex items-center justify-center gap-4 text-center my-2 md:my-0 overflow-hidden">
-                        <div>
-                            <span class="block text-xl font-bold text-slate-800"><?= $bus['jam'] ?> <span class="text-sm font-medium text-slate-500">WIB</span></span>
-                            <span class="text-xs text-slate-400 font-medium">Bukit</span>
-                        </div>
-                        <div class="flex flex-col items-center px-1 md:px-2">
-                            <span class="text-[11px] font-semibold text-amber-500 mb-1">45 Menit</span>
-                            <div class="relative flex items-center w-32 md:w-44">
-                                <div class="h-[2px] bg-slate-200 w-full"></div>
-                                <i class="fa-solid fa-bus text-xs text-amber-500 absolute left-1/2 -translate-x-1/2 bg-white px-1"></i>
-                            </div>
-                            <span class="text-[10px] text-slate-400 mt-1 whitespace-nowrap">Via Tol Palembang - Indralaya</span>
-                        </div>
-                        <div>
-                            <span class="block text-xl font-bold text-slate-800"><?= $bus['tiba'] ?> <span class="text-sm font-medium text-slate-500">WIB</span></span>
-                            <span class="text-xs text-slate-400 font-medium">Indralaya</span>
-                        </div>
-                    </div>
-
-                    <!-- Harga & Tombol Pilih -->
-                    <div class="flex md:flex-col items-center md:items-end justify-between md:justify-center border-t md:border-t-0 pt-4 md:pt-0 border-slate-100">
-                        <div class="text-left md:text-right">
-                            <span class="block text-[10px] text-slate-400 font-medium">Tarif Mahasiswa</span>
-                            <span class="text-xl font-bold text-amber-500">Rp 15.000</span>
-                        </div>
-                        <button onclick="openSeatModal('DAMRI', '<?= $bus['jam'] ?>', 'Rp 15.000')" <?= $bus['sisa'] == 0 ? 'disabled' : '' ?> class="<?= $bus['sisa'] == 0 ? 'bg-slate-300 cursor-not-allowed' : 'bg-[#1E3A8A] hover:bg-blue-900' ?> text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-sm flex items-center gap-2 mt-2">
-                            <span>Pilih Kursi</span>
-                            <i class="fa-solid fa-chevron-right text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-            <?php } ?>
-
-        </div>
-
-    </div>
-
-    <!-- 5. Modal Pilih Kursi Bus (Total 40 Kursi) -->
-    <div id="seatModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 m-4 max-h-[85vh] flex flex-col">
-            
-            <!-- Header Modal -->
-            <div class="flex items-center justify-between mb-3 border-b pb-3 border-slate-100 shrink-0">
+    </header>
+ 
+    <main class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 pb-16">
+ 
+        <!-- Panel pencarian -->
+        <section aria-label="Filter jadwal" class="bg-white rounded-lg border border-slate-200 shadow-sm p-4 sm:p-5">
+            <form id="searchForm" class="grid gap-3 md:grid-cols-[1fr_auto_1fr_minmax(0,0.85fr)] md:items-end">
+ 
                 <div>
-                    <h3 class="font-bold text-slate-800 text-lg" id="modalBusName">Pilih Kursi</h3>
-                    <p class="text-xs text-slate-400" id="modalBusDetail">Jam 07:00 WIB • Tarif Rp 15.000</p>
+                    <label for="asalSelect" class="block text-sm font-medium text-slate-700 mb-1.5">Dari</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-location-dot absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 text-sm pointer-events-none"></i>
+                        <select id="asalSelect" name="asal" class="h-11 w-full appearance-none rounded-md border border-slate-300 bg-white pl-9 pr-9 text-sm text-slate-900 hover:border-slate-400 cursor-pointer">
+                            <?php foreach ($halteList as $i => $h): ?>
+                                <option value="<?= e($h) ?>" data-short="<?= e($haltes[$h]) ?>" <?= $i === 0 ? 'selected' : '' ?>><?= e($h) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                    </div>
                 </div>
-                <button onclick="closeSeatModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+ 
+                <button type="button" id="swapRouteBtn" aria-label="Tukar asal dan tujuan"
+                        class="h-11 w-11 justify-self-center rounded-md border border-slate-300 bg-white text-navy hover:bg-slate-50 flex items-center justify-center">
+                    <i class="fa-solid fa-arrow-right-arrow-left text-sm rotate-90 md:rotate-0"></i>
+                </button>
+ 
+                <div>
+                    <label for="tujuanSelect" class="block text-sm font-medium text-slate-700 mb-1.5">Ke</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-flag-checkered absolute left-3 top-1/2 -translate-y-1/2 text-navy text-sm pointer-events-none"></i>
+                        <select id="tujuanSelect" name="tujuan" class="h-11 w-full appearance-none rounded-md border border-slate-300 bg-white pl-9 pr-9 text-sm text-slate-900 hover:border-slate-400 cursor-pointer">
+                            <?php foreach ($halteList as $i => $h): ?>
+                                <option value="<?= e($h) ?>" <?= $i === 1 ? 'selected' : '' ?>><?= e($h) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                    </div>
+                </div>
+ 
+                <div>
+                    <label for="jamInput" class="block text-sm font-medium text-slate-700 mb-1.5">Jam berangkat</label>
+                    <div class="relative">
+                        <i class="fa-regular fa-clock absolute left-3 top-1/2 -translate-y-1/2 text-emerald-600 text-sm pointer-events-none"></i>
+                        <select id="jamInput" name="jam" class="h-11 w-full appearance-none rounded-md border border-slate-300 bg-white pl-9 pr-9 text-sm text-slate-900 hover:border-slate-400 cursor-pointer tabular-nums">
+                            <option value="">Semua jam</option>
+                            <?php for ($h = $jamMulai; $h <= $jamSelesai; $h++): $hh = str_pad($h, 2, '0', STR_PAD_LEFT); ?>
+                                <option value="<?= $hh ?>"><?= $hh ?>:00 - <?= $hh ?>:59</option>
+                            <?php endfor; ?>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+                    </div>
+                </div>
+ 
+            </form>
+        </section>
+ 
+        <!-- Judul hasil + tab status -->
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div class="min-w-0">
+                <h2 id="resultTitle" class="text-lg font-semibold text-slate-900">Jadwal bus</h2>
+                <p id="resultSubtitle" class="text-sm text-slate-500">&nbsp;</p>
+            </div>
+ 
+            <div role="tablist" aria-label="Filter status kursi" class="inline-flex self-start sm:self-auto rounded-md border border-slate-200 bg-white p-0.5 text-sm font-medium">
+                <button type="button" role="tab" class="filter-tab rounded px-3 py-1.5" data-filter="all">Semua</button>
+                <button type="button" role="tab" class="filter-tab rounded px-3 py-1.5" data-filter="tersedia">Tersedia</button>
+                <button type="button" role="tab" class="filter-tab rounded px-3 py-1.5" data-filter="penuh">Penuh</button>
+            </div>
+        </div>
+ 
+        <!-- Daftar jadwal -->
+        <div id="busListContainer" class="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-white">
+            <?php foreach ($buses as $bus):
+                $isFull      = $bus['sisa'] == 0;
+                $asalShort   = $haltePendek[$bus['asal']]   ?? $bus['asal'];
+                $tujuanShort = $haltePendek[$bus['tujuan']] ?? $bus['tujuan'];
+                $hargaTeks   = rupiah($bus['harga']);
+                $dotClass    = str_replace('text-', 'bg-', $bus['icon_color']);
+                $pct         = min(100, (int)round($bus['sisa'] / $kapasitas * 100));
+ 
+                if ($isFull)                { $seatText = 'text-red-700';     $barClass = 'bg-red-500';     $seatLabel = 'Penuh'; }
+                elseif ($bus['sisa'] > 15)  { $seatText = 'text-emerald-700'; $barClass = 'bg-emerald-500'; $seatLabel = 'Sisa ' . $bus['sisa'] . ' kursi'; }
+                else                        { $seatText = 'text-amber-700';   $barClass = 'bg-amber-500';   $seatLabel = 'Sisa ' . $bus['sisa'] . ' kursi'; }
+            ?>
+            <article class="bus-card grid gap-4 px-4 py-4 sm:px-6 hover:bg-slate-50 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)_auto] lg:items-center lg:gap-6"
+                     data-asal="<?= e($bus['asal']) ?>"
+                     data-tujuan="<?= e($bus['tujuan']) ?>"
+                     data-jam="<?= e($bus['jam']) ?>"
+                     data-status="<?= $isFull ? 'penuh' : 'tersedia' ?>">
+ 
+                <!-- Jam & rute -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <div>
+                        <p class="text-xl font-semibold text-slate-900 tabular-nums leading-tight"><?= e($bus['jam']) ?></p>
+                        <p class="text-xs text-slate-500"><?= e($asalShort) ?></p>
+                    </div>
+                    <div class="min-w-[64px] max-w-[140px] flex-1 text-center">
+                        <p class="text-xs font-medium text-amber-700"><?= (int)$bus['durasi'] ?> menit</p>
+                        <div class="relative my-1.5 h-px bg-slate-300">
+                            <span class="absolute -left-0.5 -top-[3px] h-[7px] w-[7px] rounded-full bg-slate-400"></span>
+                            <span class="absolute -right-0.5 -top-[3px] h-[7px] w-[7px] rounded-full bg-navy"></span>
+                        </div>
+                        <p class="truncate text-xs text-slate-400"><?= e($bus['via']) ?></p>
+                    </div>
+                    <div>
+                        <p class="text-xl font-semibold text-slate-900 tabular-nums leading-tight"><?= e($bus['tiba']) ?></p>
+                        <p class="text-xs text-slate-500"><?= e($tujuanShort) ?></p>
+                    </div>
+                </div>
+ 
+                <!-- Info bus + kursi (berdampingan di layar kecil, jadi kolom sendiri di desktop) -->
+                <div class="flex items-start justify-between gap-4 lg:contents">
+                    <div class="min-w-0">
+                        <p class="font-semibold text-slate-900">DAMRI Executive</p>
+                        <p class="mt-0.5 flex items-center gap-1.5 text-sm text-slate-500">
+                            <span class="h-1.5 w-1.5 shrink-0 rounded-full <?= e($dotClass) ?>"></span>
+                            <?= e($bus['status']) ?>
+                        </p>
+                    </div>
+                    <div class="w-32 shrink-0 lg:w-full lg:max-w-[160px]">
+                        <p class="text-sm font-medium <?= $seatText ?> lg:text-left text-right"><?= e($seatLabel) ?></p>
+                        <div class="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-100" role="img" aria-label="<?= e($seatLabel) ?> dari <?= (int)$kapasitas ?>">
+                            <div class="h-full rounded-full <?= $barClass ?>" style="width: <?= $pct ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- Harga & aksi -->
+                <div class="flex items-center justify-between gap-4 lg:min-w-[140px] lg:flex-col lg:items-end lg:gap-2">
+                    <div class="lg:text-right">
+                        <p class="text-lg font-semibold text-amber-700 tabular-nums leading-tight"><?= $hargaTeks ?></p>
+                        <p class="text-xs text-slate-500">Tarif mahasiswa</p>
+                    </div>
+                    <button type="button"
+                            data-bus="DAMRI Executive"
+                            data-asal="<?= e($bus['asal']) ?>"
+                            data-tujuan="<?= e($bus['tujuan']) ?>"
+                            data-jam="<?= e($bus['jam']) ?>"
+                            data-harga="<?= e($hargaTeks) ?>"
+                            <?= $isFull ? 'disabled' : '' ?>
+                            class="btn-pilih-kursi h-10 shrink-0 rounded-md px-4 text-sm font-medium <?= $isFull ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-navy text-white hover:bg-navy-dark' ?>">
+                        <?= $isFull ? 'Penuh' : 'Pilih kursi' ?>
+                    </button>
+                </div>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </main>
+ 
+    <!-- MODAL PILIH KURSI -->
+    <div id="seatModal" class="fixed inset-0 z-50 items-end justify-center bg-slate-900/60 sm:items-center sm:p-4" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalBusName">
+        <div class="flex max-h-[92vh] w-full flex-col rounded-t-xl bg-white sm:max-w-md sm:rounded-lg">
+            <div class="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4">
+                <div class="min-w-0">
+                    <h3 id="modalBusName" class="font-semibold text-slate-900">Pilih kursi</h3>
+                    <p id="modalBusDetail" class="text-sm text-slate-500 tabular-nums"></p>
+                </div>
+                <button type="button" id="closeSeatModalBtn" aria-label="Tutup" class="h-8 w-8 shrink-0 rounded-md text-slate-500 hover:bg-slate-100 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
-            <!-- Keterangan Status Warna -->
-            <div class="flex items-center justify-center gap-4 text-xs font-medium text-slate-500 mb-3 shrink-0">
-                <div class="flex items-center gap-1.5">
-                    <div class="w-3.5 h-3.5 rounded bg-emerald-100 border border-emerald-400"></div>
-                    <span>Tersedia</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <div class="w-3.5 h-3.5 rounded bg-amber-500 border border-amber-600"></div>
-                    <span>Dipilih</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <div class="w-3.5 h-3.5 rounded bg-slate-200 border border-slate-300"></div>
-                    <span>Terisi</span>
+ 
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-1 px-5 pt-4 text-sm text-slate-600">
+                <span class="flex items-center gap-2"><span class="h-4 w-4 rounded border border-emerald-300 bg-emerald-50"></span>Tersedia</span>
+                <span class="flex items-center gap-2"><span class="h-4 w-4 rounded border border-amber-600 bg-amber-500"></span>Dipilih</span>
+                <span class="flex items-center gap-2"><span class="h-4 w-4 rounded bg-slate-200"></span>Terisi</span>
+            </div>
+ 
+            <div class="flex-1 overflow-y-auto px-5 py-4">
+                <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                    <p class="mb-3 flex items-center gap-2 text-sm text-slate-500"><i class="fa-solid fa-user text-xs"></i> Supir</p>
+                    <div class="grid grid-cols-5 gap-2 text-center text-sm font-medium" id="seatGrid">
+                        <?php foreach ($seatRows as $row): foreach ($row as $cell): ?>
+                            <?php if ($cell === null): ?>
+                                <div></div>
+                            <?php elseif ($cell[0] === '#'): $label = substr($cell, 1); ?>
+                                <div class="flex h-10 items-center justify-center rounded-md bg-slate-200 text-slate-400 cursor-not-allowed <?= $label === 'Pintu' ? 'text-xs' : '' ?>"><?= e($label) ?></div>
+                            <?php else: ?>
+                                <button type="button" data-seat="<?= e($cell) ?>" class="seat-btn h-10 rounded-md border border-emerald-300 bg-emerald-50 text-emerald-800 hover:bg-emerald-100"><?= e($cell) ?></button>
+                            <?php endif; ?>
+                        <?php endforeach; endforeach; ?>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Denah Kursi Scrollable (Grid 5 Kolom) -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 overflow-y-auto flex-1 mb-4">
-                <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-4 px-1 uppercase tracking-wider">
-                    <span><i class="fa-solid fa-user text-slate-500 mr-1"></i> Supir</span>
-                    <span>Pintu <i class="fa-solid fa-door-open ml-1"></i></span>
+ 
+            <div class="flex items-center gap-4 border-t border-slate-200 px-5 py-4">
+                <div class="min-w-0">
+                    <p class="text-xs text-slate-500">Kursi dipilih</p>
+                    <p id="selectedSeatLabel" class="font-semibold text-slate-900">Belum dipilih</p>
                 </div>
-                
-                <div class="grid grid-cols-5 gap-2 text-center text-xs font-bold text-slate-600" id="seatGrid">
-                    
-                    <!-- Baris 1 -->
-                    <button onclick="selectSeat(this, '1A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">1A</button>
-                    <button onclick="selectSeat(this, '1B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">1B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '1C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">1C</button>
-                    <div class="p-2.5 rounded-lg bg-slate-200 text-slate-400 cursor-not-allowed flex items-center justify-center text-[10px]">Pintu</div>
-
-                    <!-- Baris 2 s.d. 9 -->
-                    <button onclick="selectSeat(this, '2A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">2A</button>
-                    <button onclick="selectSeat(this, '2B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">2B</button>
-                    <div class="col-span-1"></div>
-                    <div class="p-2.5 rounded-lg bg-slate-200 text-slate-400 cursor-not-allowed">2C</div>
-                    <button onclick="selectSeat(this, '2D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">2D</button>
-
-                    <button onclick="selectSeat(this, '3A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">3A</button>
-                    <button onclick="selectSeat(this, '3B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">3B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '3C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">3C</button>
-                    <button onclick="selectSeat(this, '3D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">3D</button>
-
-                    <button onclick="selectSeat(this, '4A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">4A</button>
-                    <div class="p-2.5 rounded-lg bg-slate-200 text-slate-400 cursor-not-allowed">4B</div>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '4C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">4C</button>
-                    <button onclick="selectSeat(this, '4D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">4D</button>
-
-                    <button onclick="selectSeat(this, '5A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">5A</button>
-                    <button onclick="selectSeat(this, '5B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">5B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '5C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">5C</button>
-                    <button onclick="selectSeat(this, '5D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">5D</button>
-
-                    <button onclick="selectSeat(this, '6A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">6A</button>
-                    <button onclick="selectSeat(this, '6B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">6B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '6C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">6C</button>
-                    <div class="p-2.5 rounded-lg bg-slate-200 text-slate-400 cursor-not-allowed">6D</div>
-
-                    <button onclick="selectSeat(this, '7A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">7A</button>
-                    <button onclick="selectSeat(this, '7B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">7B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '7C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">7C</button>
-                    <button onclick="selectSeat(this, '7D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">7D</button>
-
-                    <button onclick="selectSeat(this, '8A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">8A</button>
-                    <button onclick="selectSeat(this, '8B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">8B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '8C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">8C</button>
-                    <button onclick="selectSeat(this, '8D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">8D</button>
-
-                    <button onclick="selectSeat(this, '9A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">9A</button>
-                    <button onclick="selectSeat(this, '9B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">9B</button>
-                    <div class="col-span-1"></div>
-                    <button onclick="selectSeat(this, '9C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">9C</button>
-                    <button onclick="selectSeat(this, '9D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">9D</button>
-
-                    <!-- Baris 10 Belakang -->
-                    <button onclick="selectSeat(this, '10A')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">10A</button>
-                    <button onclick="selectSeat(this, '10B')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">10B</button>
-                    <button onclick="selectSeat(this, '10C')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">10C</button>
-                    <button onclick="selectSeat(this, '10D')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">10D</button>
-                    <button onclick="selectSeat(this, '10E')" class="seat-btn p-2.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition-colors">10E</button>
-                
-                </div>
+                <button type="button" id="processPaymentBtn" class="ml-auto h-11 shrink-0 rounded-md bg-amber-500 px-5 text-sm font-semibold text-slate-900 hover:bg-amber-400">
+                    Lanjutkan pembayaran
+                </button>
             </div>
-
-            <!-- Tombol Aksi -->
-            <button onclick="processPayment()" class="w-full bg-[#F59E0B] hover:bg-amber-600 text-white font-semibold py-3 rounded-xl transition-all shadow-md shrink-0">
-                Lanjutkan Pembayaran
-            </button>
         </div>
     </div>
-
-    <!-- 6. MODAL E-TIKET (DETAIL TIKET YANG SUDAH DIPESAN) -->
-    <div id="ticketDetailModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 m-4 relative overflow-hidden">
-            
-            <!-- Ornamen Atas -->
-            <div class="bg-[#1E3A8A] -mx-6 -mt-6 p-6 text-white text-center relative mb-6">
-                <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-emerald-400/30">
-                    <i class="fa-solid fa-circle-check mr-1"></i> Pembayaran Berhasil
-                </span>
-                <h3 class="font-bold text-xl mt-2">E-Tiket DAMRI UNSRI</h3>
-                <p class="text-xs text-slate-300 mt-1">Simpan e-tiket ini saat menaiki bus</p>
-                <button onclick="closeTicketModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20">
+ 
+    <!-- MODAL E-TIKET -->
+    <div id="ticketDetailModal" class="fixed inset-0 z-50 items-center justify-center bg-slate-900/60 p-4" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="ticketTitle">
+        <div class="max-h-[92vh] w-full max-w-sm overflow-y-auto rounded-lg bg-white">
+            <div class="flex items-start justify-between gap-4 bg-navy px-5 py-4 text-white">
+                <div>
+                    <p class="flex items-center gap-2 text-sm font-medium text-emerald-300"><i class="fa-solid fa-circle-check"></i> Pembayaran berhasil</p>
+                    <h3 id="ticketTitle" class="mt-1 text-lg font-semibold">E-tiket DAMRI Unsri</h3>
+                    <p class="text-sm text-blue-100">Tunjukkan e-tiket ini ke petugas bus.</p>
+                </div>
+                <button type="button" id="closeTicketModalBtn" aria-label="Tutup" class="no-print h-8 w-8 shrink-0 rounded-md text-blue-100 hover:bg-white/10 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
-            <!-- Kartu Tiket Detail -->
-            <div class="space-y-4">
-                
-                <!-- Barcode Visual -->
-                <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center">
-                    <div class="flex justify-center items-center gap-1 mb-1 text-slate-800">
-                        <i class="fa-solid fa-barcode text-4xl tracking-widest"></i>
-                        <i class="fa-solid fa-barcode text-4xl tracking-widest"></i>
-                    </div>
-                    <span class="text-xs font-mono font-bold tracking-widest text-slate-500" id="ticketCodeText">DMR-202611-8942</span>
+ 
+            <div class="space-y-4 p-5">
+                <div class="rounded-md border border-slate-200 bg-slate-50 py-3 text-center">
+                    <i class="fa-solid fa-barcode text-5xl text-slate-800"></i>
+                    <p id="ticketCodeText" class="mt-1 font-semibold tracking-widest text-slate-600 tabular-nums">DMR-000000</p>
                 </div>
-
-                <!-- Informasi Rute & Waktu -->
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
-                    <div class="flex justify-between items-center text-xs text-slate-400 font-medium">
-                        <span>Layanan Bus</span>
-                        <span class="font-bold text-[#1E3A8A]">DAMRI Executive</span>
+ 
+                <div class="flex items-center justify-between gap-3">
+                    <div class="min-w-0">
+                        <p class="text-xs text-slate-500">Dari</p>
+                        <p id="ticketAsal" class="font-semibold text-slate-900"></p>
                     </div>
-
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-200/60">
-                        <div>
-                            <span class="block text-xs text-slate-400">Dari</span>
-                            <span class="font-bold text-slate-800 text-sm" id="ticketAsal">Halte Unsri Bukit</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-right text-slate-300 text-xs"></i>
-                        <div class="text-right">
-                            <span class="block text-xs text-slate-400">Tujuan</span>
-                            <span class="font-bold text-slate-800 text-sm" id="ticketTujuan">Terminal Unsri Indralaya</span>
-                        </div>
+                    <i class="fa-solid fa-arrow-right shrink-0 text-slate-300"></i>
+                    <div class="min-w-0 text-right">
+                        <p class="text-xs text-slate-500">Tujuan</p>
+                        <p id="ticketTujuan" class="font-semibold text-slate-900"></p>
                     </div>
                 </div>
-
-                <!-- Grid Rincian -->
-                <div class="grid grid-cols-2 gap-3 text-xs">
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="block text-slate-400 text-[10px]">Jam Keberangkatan</span>
-                        <span class="font-bold text-slate-800 text-sm" id="ticketJam">07:00 WIB</span>
-                    </div>
-                    <div class="bg-amber-50 p-3 rounded-xl border border-amber-100">
-                        <span class="block text-amber-600 text-[10px]">Nomor Kursi</span>
-                        <span class="font-bold text-amber-600 text-base" id="ticketKursi">3A</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="block text-slate-400 text-[10px]">Tarif Tiket</span>
-                        <span class="font-bold text-slate-800" id="ticketHarga">Rp 15.000</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="block text-slate-400 text-[10px]">Status Tiket</span>
-                        <span class="font-bold text-emerald-600">LUNAS</span>
-                    </div>
-                </div>
-
+ 
+                <dl class="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-dashed border-slate-300 pt-4 text-sm">
+                    <div><dt class="text-xs text-slate-500">Layanan</dt><dd id="ticketBus" class="font-semibold text-navy">DAMRI Executive</dd></div>
+                    <div><dt class="text-xs text-slate-500">Jam berangkat</dt><dd id="ticketJam" class="font-semibold text-slate-900 tabular-nums"></dd></div>
+                    <div><dt class="text-xs text-slate-500">Nomor kursi</dt><dd id="ticketKursi" class="text-lg font-semibold text-amber-700"></dd></div>
+                    <div><dt class="text-xs text-slate-500">Tarif</dt><dd id="ticketHarga" class="font-semibold text-slate-900 tabular-nums"></dd></div>
+                    <div><dt class="text-xs text-slate-500">Status</dt><dd class="font-semibold text-emerald-700">Lunas</dd></div>
+                </dl>
             </div>
-
-            <!-- Tombol Selesai & Cetak -->
-            <div class="flex gap-2 mt-6">
-                <button onclick="window.print()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5">
-                    <i class="fa-solid fa-print"></i> Cetak Tiket
+ 
+            <div class="no-print flex gap-2 border-t border-slate-200 p-4">
+                <button type="button" onclick="window.print()" class="flex h-11 flex-1 items-center justify-center gap-2 rounded-md border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-50">
+                    <i class="fa-solid fa-print text-xs"></i> Cetak tiket
                 </button>
-                <button onclick="closeTicketModal()" class="flex-1 bg-[#1E3A8A] hover:bg-blue-900 text-white font-semibold py-3 rounded-xl text-xs transition-colors shadow-md">
+                <button type="button" id="finishTicketBtn" class="h-11 flex-1 rounded-md bg-navy text-sm font-medium text-white hover:bg-navy-dark">
                     Selesai
                 </button>
             </div>
-
         </div>
     </div>
-
-    <!-- Script Logic Modal & Interaksi -->
-    <script>
-        let currentBusName = '';
-        let currentJam = '';
-        let currentHarga = '';
-        let selectedSeatNum = '';
-
-        function openSeatModal(busName, jam, harga) {
-            currentBusName = busName;
-            currentJam = jam;
-            currentHarga = harga;
-            selectedSeatNum = '';
-            
-            // Reset pilihan kursi sebelumnya
-            document.querySelectorAll('.seat-btn').forEach(btn => {
-                btn.classList.remove('bg-amber-500', 'text-white', 'hover:bg-amber-600');
-                btn.classList.add('bg-emerald-100', 'text-emerald-700', 'hover:bg-emerald-200');
-            });
-
-            document.getElementById('modalBusName').innerText = busName;
-            document.getElementById('modalBusDetail').innerText = `Jam Keberangkatan ${jam} WIB • ${harga}`;
-            document.getElementById('seatModal').classList.remove('hidden');
-        }
-
-        function closeSeatModal() {
-            document.getElementById('seatModal').classList.add('hidden');
-        }
-
-        function selectSeat(button, seatNum) {
-            // Reset warna kursi lain
-            document.querySelectorAll('.seat-btn').forEach(btn => {
-                btn.classList.remove('bg-amber-500', 'text-white', 'hover:bg-amber-600');
-                btn.classList.add('bg-emerald-100', 'text-emerald-700', 'hover:bg-emerald-200');
-            });
-
-            // Tandai kursi terpilih
-            button.classList.remove('bg-emerald-100', 'text-emerald-700', 'hover:bg-emerald-200');
-            button.classList.add('bg-amber-500', 'text-white', 'hover:bg-amber-600');
-            
-            selectedSeatNum = seatNum;
-        }
-
-        function processPayment() {
-            if (!selectedSeatNum) {
-                alert('Silakan pilih nomor kursi terlebih dahulu!');
-                return;
-            }
-
-            // Tutup Modal Kursi
-            closeSeatModal();
-
-            // Ambil Rute Dari Input Select
-            const asal = document.getElementById('asalSelect').value;
-            const tujuan = document.getElementById('tujuanSelect').value;
-            const randomCode = 'DMR-' + Math.floor(100000 + Math.random() * 900000);
-
-            // Populate Data ke Modal Detail Tiket
-            document.getElementById('ticketCodeText').innerText = randomCode;
-            document.getElementById('ticketAsal').innerText = asal;
-            document.getElementById('ticketTujuan').innerText = tujuan;
-            document.getElementById('ticketJam').innerText = currentJam + ' WIB';
-            document.getElementById('ticketKursi').innerText = selectedSeatNum;
-            document.getElementById('ticketHarga').innerText = currentHarga;
-
-            // Buka Modal Detail Tiket
-            document.getElementById('ticketDetailModal').classList.remove('hidden');
-        }
-
-        function closeTicketModal() {
-            document.getElementById('ticketDetailModal').classList.add('hidden');
-        }
-    </script>
+    <script src="js/cariTiket.js"></script>
 </body>
 </html>
