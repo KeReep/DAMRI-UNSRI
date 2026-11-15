@@ -13,7 +13,7 @@ $menu = [
     'Kontak'      => '#kontak',
 ];
 
-$linkClass = 'nav-link relative text-slate-600 hover:text-amber-500 transition-colors duration-300
+$linkClass = 'nav-link relative text-slate-600 text-mdf hover:text-amber-500 transition-colors duration-300
               after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0
               after:bg-amber-500 after:transition-all after:duration-300
               hover:after:w-full focus:text-amber-500 focus:after:w-full';

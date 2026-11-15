@@ -28,7 +28,7 @@
     <!-- Header Informasi Rute -->
     <header class="bg-navy text-white px-4 py-4 shadow-md flex items-center justify-between z-10">
         <div class="flex items-center gap-3">
-            <a href="cari-tiket.html" class="text-blue-100 hover:text-white"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+            <a href="cariTiket.php" class="text-blue-100 hover:text-white"><i class="fa-solid fa-arrow-left text-lg"></i></a>
             <div>
                 <h1 id="headerTitle" class="font-semibold text-sm sm:text-base">Detail Perjalanan Bus</h1>
                 <p id="routeSub" class="text-xs text-blue-200">Memuat rute perjalanan...</p>

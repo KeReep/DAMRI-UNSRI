@@ -26,22 +26,14 @@
   <div id="containerBox" class="container-box relative w-full max-w-[1000px] min-h-[600px] bg-[#F3F5F9] rounded-[32px] shadow-2xl overflow-hidden my-auto">
     
   
-    <div class="absolute top-0 right-0 w-full md:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 py-6 z-1">
+    <div class="absolute top-0 right-0 w-full md:w-1/2 h-full flex flex-col justify-center px-6 sm:px-12 py-[5px] z-1">
       <div class="text-center md:text-left mb-[50px] flex flex-col justify-center items-center gap-1.5">
         <h1 class="text-3xl sm:text-[38px] font-bold text-yellow-600 mb-1">SIGN UP</h1>
         <img src="../images/logo_damri.png" class="w-[80px] h-[15px] mr-[5px]">
       </div>
 
-      
-
       <form action="../backend/auth/register.php" method="POST" class="flex flex-col gap-3">
         <input type="hidden" name="role" value ="mahasiswa" class="roleInput">
-        <div class="role relative bg-white flex justify-between items-center p-2 w-[250px] left-[70px] rounded-4xl shadow-xl ">
-          <div class="slider absolute bg-yellow-500 w-[50%] h-[100%] left-[0px] rounded-4xl transition-all duration-400 ease-in-out"></div>
-          <button type = "button" class="mahasiswa text-[16px] text-black font-[700] left-[10px] relative " name = "Mahasiswa">Mahasiswa</button>
-          <button type = "button" class="driver relative right-[30px] text-black font-[700] text-[16px]" name = "Driver">Driver</button>
-        </div>
-
           <div>
             <input type="text" name="username" placeholder="Nama Lengkap" required class="w-full px-5 py-3 rounded-2xl bg-white border border-transparent focus:border-gray-300 text-gray-700 placeholder-gray-400 text-sm outline-none shadow-sm transition">
           </div>

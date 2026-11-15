@@ -10,6 +10,12 @@
         html {
             scroll-behavior: smooth;
         }
+        .href {
+            font-size : 1rem;
+        }
+        .footer{
+            font-size : 0.875rem;
+        }
 
     </style>
 </head>
@@ -24,7 +30,7 @@
                          alt="Bus DAMRI Universitas Sriwijaya" 
                          class="w-full h-full object-cover object-right"
                          />
-                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-40% to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 via-10% to-transparent"></div>
                     
                     <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
                 </div>
@@ -43,7 +49,7 @@
                             </h1>
                         </div>
 
-                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg">
+                        <p class="text-slate-600 text-mds sm:text-base leading-relaxed max-w-md">
                             Layanan pemesanan tiket bus DAMRI khusus untuk mahasiswa Universitas Sriwijaya. Pesan tiket mudah, cepat, dan aman.
                         </p>
      
@@ -58,99 +64,16 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/90 backdrop-blur-sm border border-slate-100 shadow-sm">
+                            <div class="flex bg-damri-amber hover:bg-damri-amberHover items-center gap-3 p-3 rounded-2xl backdrop-blur-sm border border-slate-100 shadow-sm">
                                 <div class="w-9 h-9 rounded-full bg-damri-navy/10 text-damri-navy flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-bolt text-base"></i>
+                                    <i class="fa-solid fa-ticket"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-xs text-slate-800">Mudah & Cepat</h4>
-                                    <p class="text-[11px] text-slate-500">Pemesanan tiket online kapan saja</p>
-                                </div>
+                                <a href = "cariTiket.php"><button class="btnToCariTiket">Cari Tiket Sekarang!</button></a>
                             </div>
                         </div>
                     </div>
 
                 </div>
-            </div>
-        </section>
-
-    <?php require_once __DIR__ . '/route.php';?>
-        <!-- Section Form Pesan Tiket -->
-        <section id="pesan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-7">
-                <h3 class="text-lg font-bold text-damri-navy mb-5">Pesan Tiket Bus</h3>
-
-                <form id="ticketSearchForm" action="cariTiket.php" method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 gap-4 items-end">
-                        
-                    <!-- Input Asal -->
-                    <div class="lg:col-span-2 space-y-1.5">
-                        <label for="originInput" class="text-xs font-semibold text-slate-500">Dari</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <select id="originInput" name="asal" class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer" required>
-                                <option value="">Pilih lokasi asal</option>
-                                <?php foreach ($halteList as $h): ?>
-                                    <option value="<?= e($h) ?>"><?= e($h) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
-                        </div>
-                    </div>
-
-                    <!-- Input Tujuan -->
-                    <div class="lg:col-span-2 space-y-1.5">
-                        <label for="destinationInput" class="text-xs font-semibold text-slate-500">Tujuan</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <select id="destinationInput" name="tujuan" class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer" required>
-                                <option value="">Pilih tujuan</option>
-                                <?php foreach ($halteList as $h): ?>
-                                    <option value="<?= e($h) ?>"><?= e($h) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
-                        </div>
-                    </div>
-                
-                    <!-- Input Jam Keberangkatan -->
-                    <div class="lg:col-span-2 space-y-1.5">
-                        <label for="timeInput" class="text-xs font-semibold text-slate-500">Jam Keberangkatan</label>
-                        <div class="relative">
-                            <i class="fa-regular fa-clock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <select id="timeInput" name="jam" class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer tabular-nums">
-                                <option value="">Semua jam</option>
-                                <?php for ($h = $jamMulai; $h <= $jamSelesai; $h++): 
-                                    $hh = str_pad($h, 2, '0', STR_PAD_LEFT); 
-                                ?>
-                                    <option value="<?= $hh ?>"><?= $hh ?>:00 WIB</option>
-                                <?php endfor; ?>
-                            </select>
-                            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
-                        </div>
-                    </div>
-            
-                    <!-- Input Jumlah Penumpang -->
-                    <div class="lg:col-span-2 space-y-1.5">
-                        <label for="passengerInput" class="text-xs font-semibold text-slate-500">Jumlah Penumpang</label>
-                        <div class="relative">
-                            <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <select id="passengerInput" name="penumpang" class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer">
-                                <option value="1">1 Penumpang</option>
-                                <option value="2">2 Penumpang</option>
-                                <option value="3">3 Penumpang</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px] pointer-events-none"></i>
-                        </div>
-                    </div>
-            
-                    <!-- Tombol Submit Form -->
-                    <div class="lg:col-span-1 relative z-10">
-                        <button type="submit" class="w-full py-3 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white text-xs font-bold rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-center cursor-pointer">
-                            Cari Tiket
-                        </button>
-                    </div>
-
-                </form>
             </div>
         </section>
 
@@ -168,11 +91,11 @@
                     <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 bg-blue-50 text-damri-navy font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 15.000</span>
+                            <span class="text-amber-500 font-extrabold text-md">Rp 15.000</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div>
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <h4 class="font-bold text-md text-slate-800">Kampus Bukit Palembang</h4>
                                 <p class="text-xs text-slate-400">Penjemputan Kumpul Halte Bukit</p>
                             </div>
                             <div class="flex-grow flex items-center justify-center px-2">
@@ -181,23 +104,23 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <h4 class="font-bold text-md text-slate-800">Kampus Indralaya</h4>
                                 <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
                             </div>
                         </div>
                         <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                            <a href="#pesan" class="font-bold text-damri-navy relative hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                            <a href="#pesan" class="href font-bold text-damri-navy text-md relative hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
                         </div>
                     </div>
 
                     <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 bg-amber-50 text-amber-600 font-bold text-[11px] rounded-full">Rute tol Palindra</span>
-                            <span class="text-amber-500 font-extrabold text-sm">Rp 15.000</span>
+                            <span class="text-amber-500 font-extrabold text-md">Rp 15.000</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div>
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Indralaya</h4>
+                                <h4 class="font-bold text-md text-slate-800">Kampus Indralaya</h4>
                                 <p class="text-xs text-slate-400">Terminal Bus UNSRI</p>
                             </div>
                             <div class="flex-grow flex items-center justify-center px-2">
@@ -206,12 +129,12 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <h4 class="font-bold text-sm text-slate-800">Kampus Bukit Palembang</h4>
+                                <h4 class="font-bold text-md text-slate-800">Kampus Bukit Palembang</h4>
                                 <p class="text-xs text-slate-400">Halte Bukit</p>
                             </div>
                         </div>
                         <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                            <a href="#pesan" class="font-bold text-damri-navy hover:underline">Pesan <i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+                            <a href="#pesan" class="href font-bold text-damri-navy text-md hover:underline">Pesan <i class="fa-solid fa-chevron-right text-md"></i></a>
                         </div>
                     </div>
                     
@@ -410,8 +333,7 @@
                 </div>
             </div>
         </div>
-        </section>
-        <script src="js/jadwal.js"></script>
+</section>
 
         <!-- DIPERBAIKI: Padding atas-bawah diperluas (py-20) dan gap antar kartu ditingkatkan (gap-6) agar tidak mepet -->
         <section id="informasi" class="py-20 bg-white">
@@ -601,17 +523,17 @@
                 </div>
 
                 <div class="lg:col-span-2 space-y-2">
-                    <h5 class="text-white font-bold text-xs tracking-wider uppercase">Tautan Cepat</h5>
+                    <h5 class="text-damri-amber font-bold text-xs tracking-wider uppercase">Tautan Cepat</h5>
                     <ul class="space-y-1.5 text-xs text-slate-400">
-                        <li><a href="#beranda" class="hover:text-amber-400 transition-colors">Beranda</a></li>
-                        <li><a href="#pesan" class="hover:text-amber-400 transition-colors">Pesan Tiket</a></li>
-                        <li><a href="#jadwal" class="hover:text-amber-400 transition-colors">Jadwal</a></li>
-                        <li><a href="#rute" class="hover:text-amber-400 transition-colors">Rute</a></li>
+                        <li><a href="#beranda" class="footer text-white hover:text-gray-400 transition-colors">Beranda</a></li>
+                        <li><a href="#pesan" class="footer text-white hover:text-gray-400 text-md transition-colors">Pesan Tiket</a></li>
+                        <li><a href="#jadwal" class="footer text-white hover:text-gray-400 transition-colors">Jadwal</a></li>
+                        <li><a href="#rute" class="footer text-white hover:text-gray-400 transition-colors">Rute</a></li>
                     </ul>
                 </div>
 
                 <div class="lg:col-span-2 space-y-2">
-                    <h5 class="text-white font-bold text-xs tracking-wider uppercase">Informasi</h5>
+                    <h5 class="text-damri-amber font-bold text-xs tracking-wider uppercase">Informasi</h5>
                     <ul class="space-y-1.5 text-xs text-slate-400">
                         <li><a href="#" class="hover:text-amber-400 transition-colors">Cara Pesan</a></li>
                         <li><a href="#" class="hover:text-amber-400 transition-colors">Syarat & Ketentuan</a></li>
@@ -653,5 +575,6 @@
     </div>
 
     <script src="js/mapLandingPage.js"></script>
+    <script src = "js/index.js"></script>
 </body>
 </html>
