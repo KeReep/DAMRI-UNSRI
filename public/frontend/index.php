@@ -517,7 +517,7 @@
                         <img src = "../images/logo_damri.png" class="w-[130px] h-[45px] object-contain shrink-0" />
                         <span class="text-3xl font-black tracking-tight font-[700] text-amber-500">UNSRI</span>     
                     </div>
-                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                    <p class="text-xs text-white max-w-sm leading-relaxed">
                         Layanan resmi DAMRI untuk mahasiswa Universitas Sriwijaya. Nikmati perjalanan nyaman dengan harga terjangkau.
                     </p>
                 </div>
@@ -525,35 +525,25 @@
                 <div class="lg:col-span-2 space-y-2">
                     <h5 class="text-damri-amber font-bold text-xs tracking-wider uppercase">Tautan Cepat</h5>
                     <ul class="space-y-1.5 text-xs text-slate-400">
-                        <li><a href="#beranda" class="footer text-white hover:text-gray-400 transition-colors">Beranda</a></li>
-                        <li><a href="#pesan" class="footer text-white hover:text-gray-400 text-md transition-colors">Pesan Tiket</a></li>
-                        <li><a href="#jadwal" class="footer text-white hover:text-gray-400 transition-colors">Jadwal</a></li>
-                        <li><a href="#rute" class="footer text-white hover:text-gray-400 transition-colors">Rute</a></li>
-                    </ul>
-                </div>
-
-                <div class="lg:col-span-2 space-y-2">
-                    <h5 class="text-damri-amber font-bold text-xs tracking-wider uppercase">Informasi</h5>
-                    <ul class="space-y-1.5 text-xs text-slate-400">
-                        <li><a href="#" class="hover:text-amber-400 transition-colors">Cara Pesan</a></li>
-                        <li><a href="#" class="hover:text-amber-400 transition-colors">Syarat & Ketentuan</a></li>
-                        <li><a href="#" class="hover:text-amber-400 transition-colors">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="hover:text-amber-400 transition-colors">FAQ</a></li>
+                        <li><a href="#beranda" class="footer text-white hover:text-gray-400 transition-colors text-xs">Beranda</a></li>
+                        <li><a href="#pesan" class="footer text-white hover:text-gray-400 text-md transition-colors text-xs">Pesan Tiket</a></li>
+                        <li><a href="#jadwal" class="footer text-white hover:text-gray-400 transition-colors text-xs">Jadwal</a></li>
+                        <li><a href="#rute" class="footer text-white hover:text-gray-400 transition-colors text-xs">Rute</a></li>
                     </ul>
                 </div>
 
                 <div class="lg:col-span-3 space-y-2">
-                    <h5 class="text-white font-bold text-xs tracking-wider uppercase">Kontak Kami</h5>
+                    <h5 class="text-damri-amber font-bold text-xs tracking-wider uppercase">Kontak Kami</h5>
                     <ul class="space-y-2 text-xs text-slate-400">
-                        <li class="flex items-center gap-2.5">
+                        <li class="flex text-white hover:text-gray-400 transition-colors items-center gap-2.5">
                             <i class="fa-solid fa-phone text-amber-500 text-xs"></i>
                             <span>0711-1234567</span>
                         </li>
-                        <li class="flex items-center gap-2.5">
+                        <li class="flex text-white hover:text-gray-400 transition-colors items-center gap-2.5">
                             <i class="fa-solid fa-envelope text-amber-500 text-xs"></i>
                             <span>info@damriunsri.ac.id</span>
                         </li>
-                        <li class="flex items-center gap-2.5">
+                        <li class="flex text-white hover:text-gray-400 transition-colors items-center gap-2.5">
                             <i class="fa-solid fa-location-dot text-amber-500 text-xs"></i>
                             <span>Palembang, Sumatera Selatan</span>
                         </li>
